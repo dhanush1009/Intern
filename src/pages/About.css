@@ -15,14 +15,15 @@
 
 .page-title h1 {
   font-size: 3rem;
-  color: #333;
+  color: #1e293b;
   margin-bottom: 15px;
   font-weight: 700;
 }
 
 .page-title .subtitle {
   font-size: 1.3rem;
-  color: #666;
+  color: #475569;
+  font-weight: 500;
 }
 
 .about-container {
@@ -39,7 +40,7 @@
 
 .about-text h2 {
   font-size: 2.5rem;
-  color: #333;
+  color: #1e293b;
   margin-bottom: 30px;
   font-weight: 700;
 }
@@ -47,12 +48,12 @@
 .about-text p {
   font-size: 1.15rem;
   line-height: 1.8;
-  color: #555;
+  color: #334155;
   margin-bottom: 20px;
 }
 
 .about-text strong {
-  color: #667eea;
+  color: #2563eb;
   font-weight: 600;
 }
 
@@ -65,12 +66,12 @@
 .image-placeholder {
   width: 350px;
   height: 350px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 25px 60px rgba(37, 99, 235, 0.3);
   animation: float 3s ease-in-out infinite;
 }
 
@@ -92,8 +93,8 @@
 /* Vision Section */
 .vision-section {
   padding: 80px 50px;
-  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-  color: white;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  color: #1e293b;
   text-align: center;
 }
 
@@ -112,12 +113,16 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 3px solid #e2e8f0;
 }
 
 .section-icon {
   font-size: 3rem;
-  color: #1e3c72;
+  background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .vision-section h2,
@@ -131,9 +136,10 @@
 .mission-content {
   font-size: 1.25rem;
   line-height: 1.9;
-  opacity: 0.95;
+  opacity: 0.98;
   max-width: 900px;
   margin: 0 auto;
+  color: #475569;
 }
 
 /* Mission Section */
@@ -149,15 +155,19 @@
 }
 
 .mission-section h2 {
-  color: #333;
+  color: #1e293b;
 }
 
 .mission-content {
-  color: #555;
+  color: #334155;
+  font-weight: 500;
 }
 
 .mission-icon-wrapper .section-icon {
-  color: #667eea;
+  background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Values Section */
@@ -169,7 +179,7 @@
 .values-section h2 {
   text-align: center;
   font-size: 2.8rem;
-  color: #333;
+  color: #1e293b;
   margin-bottom: 60px;
   font-weight: 700;
 }
@@ -194,7 +204,7 @@
 .value-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  border-color: #667eea;
+  border-color: #2563eb;
   background: white;
 }
 
@@ -202,7 +212,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -216,13 +226,13 @@
 
 .value-card h3 {
   font-size: 1.6rem;
-  color: #333;
+  color: #1e293b;
   margin-bottom: 15px;
   font-weight: 600;
 }
 
 .value-card p {
-  color: #666;
+  color: #334155;
   line-height: 1.7;
   font-size: 1.05rem;
 }
@@ -230,8 +240,8 @@
 /* Difference Section */
 .difference-section {
   padding: 80px 50px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  color: #1e293b;
 }
 
 .difference-section h2 {
@@ -250,24 +260,26 @@
 }
 
 .difference-item {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.7);
   padding: 40px;
   border-radius: 15px;
   backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid #e2e8f0;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .difference-item:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.95);
   transform: translateY(-10px);
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: #2563eb;
+  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
 }
 
 .difference-number {
   font-size: 3rem;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(37, 99, 235, 0.2);
   margin-bottom: 20px;
 }
 
@@ -275,12 +287,14 @@
   font-size: 1.5rem;
   margin-bottom: 15px;
   font-weight: 600;
+  color: #1e293b;
 }
 
 .difference-item p {
   line-height: 1.7;
   opacity: 0.95;
   font-size: 1.05rem;
+  color: #475569;
 }
 
 /* Responsive Design */

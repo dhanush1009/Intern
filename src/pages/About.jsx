@@ -16,19 +16,19 @@ const About = () => {
         <div className="about-container">
           <div className="about-content">
             <div className="about-text">
-              <h2>About Shanruck Technologies</h2>
+              <h2>Create Your Tomorrow With Us</h2>
               <p>
-                At <strong>Shanruck Technologies</strong>, we provide immersive bootcamps and training 
-                programs to help individuals gain the skills they need to succeed in today's job market.
+                <strong>Shanruck Technologies</strong> provides immersive training programs designed to 
+                help individuals develop practical skills required in today's competitive job market.
               </p>
               <p>
-                We offer courses in web development, data science, cybersecurity, and more. Our programs 
-                are designed especially for freshers with little to no coding experience, and we equip 
-                them with the skills they need to land their dream jobs.
+                We offer programs in web development, cybersecurity, UI/UX design, and programming technologies. 
+                Our courses are designed especially for freshers and beginners who want to start a successful 
+                career in the technology industry.
               </p>
               <p>
-                Our team consists of experienced professionals who are passionate about helping students 
-                succeed through hands-on learning, real-world projects, mentorship, and career support.
+                Our experienced mentors focus on hands-on learning through real-world projects, industry 
+                guidance, and career development support.
               </p>
             </div>
             <div className="about-image">
@@ -48,10 +48,10 @@ const About = () => {
           </div>
           <h2>Our Vision</h2>
           <p className="vision-content">
-            Imagine a world where every individual's potential shines brilliantly. At Shanruck, 
-            we envision being the guiding light by offering personalized help and tools that empower 
-            individuals and reassure parents. Our goal is to make career exploration a positive journey 
-            that is clear, accessible, and full of opportunities.
+            We envision a future where every individual has the opportunity to discover their potential 
+            and build a meaningful career. Shanruck Technologies aims to guide students with the right 
+            tools, mentorship, and learning resources so they can confidently explore and pursue their 
+            career goals.
           </p>
         </div>
       </section>
@@ -64,10 +64,9 @@ const About = () => {
           </div>
           <h2>Our Mission</h2>
           <p className="mission-content">
-            We are committed to providing comprehensive career support services that fulfill the unique 
-            needs of each individual. Through personalized counseling, multidimensional testing, and access 
-            to resources, we empower individuals to make informed decisions about their future careers and 
-            help them discover their full potential.
+            Our mission is to provide structured career support and skill-based training programs that 
+            empower individuals to make informed career decisions. Through mentorship, practical learning, 
+            and professional guidance, we help students unlock their full potential and build rewarding careers.
           </p>
         </div>
       </section>

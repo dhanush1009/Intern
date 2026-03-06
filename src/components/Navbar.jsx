@@ -76,15 +76,6 @@ const Navbar = () => {
               Contact
             </Link>
           </li>
-          <li className="nav-item">
-            <Link
-              to="/contact"
-              className="nav-links enquiry-btn"
-              onClick={closeMenu}
-            >
-              Enquiry
-            </Link>
-          </li>
         </ul>
       </div>
     </nav>

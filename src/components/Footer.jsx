@@ -50,11 +50,11 @@ const Footer = () => {
         <div className="footer-section">
           <h4>Programs</h4>
           <ul>
-            <li><Link to="/programs">Full Stack Web Development</Link></li>
+            <li><Link to="/programs">Full Stack</Link></li>
             <li><Link to="/programs">Python</Link></li>
             <li><Link to="/programs">WordPress</Link></li>
             <li><Link to="/programs">Java</Link></li>
-            <li><Link to="/programs">UI/UX Design</Link></li>
+            <li><Link to="/programs">UI/UX</Link></li>
             <li><Link to="/programs">Cybersecurity</Link></li>
           </ul>
         </div>

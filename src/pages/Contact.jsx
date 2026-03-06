@@ -8,7 +8,9 @@ import {
   FaFacebookF,
   FaTwitter,
   FaLinkedinIn,
-  FaInstagram
+  FaInstagram,
+  FaCheckCircle,
+  FaExclamationCircle
 } from 'react-icons/fa';
 import './Contact.css';
 
@@ -21,28 +23,154 @@ const Contact = () => {
     message: ''
   });
 
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [errors, setErrors] = useState([]);
+  const [touched, setTouched] = useState({});
+
+  // Validation functions
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone) => {
+    const phoneRegex = /^[+]?[\d\s\-()]{10,}$/;
+    return phoneRegex.test(phone);
+  };
+
+  const validateForm = () => {
+    const newErrors = [];
+
+    if (!formData.name.trim()) {
+      newErrors.push('Name is required');
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.push('Email is required');
+    } else if (!validateEmail(formData.email)) {
+      newErrors.push('Please enter a valid email address');
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.push('Phone number is required');
+    } else if (!validatePhone(formData.phone)) {
+      newErrors.push('Please enter a valid phone number (minimum 10 digits)');
+    }
+
+    if (!formData.course) {
+      newErrors.push('Please select a course');
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.push('Message is required');
+    }
+
+    return newErrors;
+  };
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+    // Clear errors when user starts typing
+    if (errors.length > 0) {
+      setErrors([]);
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    alert('Thank you for your enquiry! We will get back to you soon.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      course: '',
-      message: ''
+  const handleBlur = (field) => {
+    setTouched({
+      ...touched,
+      [field]: true
     });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Clear previous messages
+    setErrors([]);
+    setSuccess(false);
+
+    // Validate form
+    const validationErrors = validateForm();
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSuccess(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          course: '',
+          message: ''
+        });
+        setTouched({});
+        
+        // Scroll to top to see success message
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Hide success message after 8 seconds
+        setTimeout(() => {
+          setSuccess(false);
+        }, 8000);
+      } else {
+        setErrors(data.errors || ['Failed to send enquiry. Please try again.']);
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setErrors(['Network error. Please check if the server is running and try again.']);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="contact">
+      {/* Success Message */}
+      {success && (
+        <div className="message-banner success-banner">
+          <FaCheckCircle className="message-icon" />
+          <div className="message-content">
+            <strong>Success!</strong>
+            <p>Your enquiry has been successfully submitted. We will contact you soon.</p>
+          </div>
+        </div>
+      )}
+
+      {/* Error Messages */}
+      {errors.length > 0 && (
+        <div className="message-banner error-banner">
+          <FaExclamationCircle className="message-icon" />
+          <div className="message-content">
+            <strong>Please fix the following errors:</strong>
+            <ul>
+              {errors.map((error, index) => (
+                <li key={index}>{error}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+
       {/* Contact Form and Info Section */}
       <section className="contact-main">
         <div className="page-title-center">
@@ -64,8 +192,9 @@ const Contact = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  required
+                  onBlur={() => handleBlur('name')}
                   placeholder="Enter your full name"
+                  disabled={loading}
                 />
               </div>
 
@@ -77,8 +206,9 @@ const Contact = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
+                  onBlur={() => handleBlur('email')}
                   placeholder="Enter your email"
+                  disabled={loading}
                 />
               </div>
 
@@ -90,8 +220,9 @@ const Contact = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  required
+                  onBlur={() => handleBlur('phone')}
                   placeholder="Enter your phone number"
+                  disabled={loading}
                 />
               </div>
 
@@ -102,7 +233,8 @@ const Contact = () => {
                   name="course"
                   value={formData.course}
                   onChange={handleChange}
-                  required
+                  onBlur={() => handleBlur('course')}
+                  disabled={loading}
                 >
                   <option value="">Select a course</option>
                   <option value="Full Stack Web Development">Full Stack Web Development</option>
@@ -116,19 +248,29 @@ const Contact = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">Message</label>
+                <label htmlFor="message">Message *</label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
+                  onBlur={() => handleBlur('message')}
                   rows="5"
                   placeholder="Tell us more about your requirements..."
+                  disabled={loading}
                 ></textarea>
               </div>
 
-              <button type="submit" className="submit-btn">
-                <FaPaperPlane /> Send Message
+              <button type="submit" className="submit-btn" disabled={loading}>
+                {loading ? (
+                  <>
+                    <span className="spinner"></span> Sending...
+                  </>
+                ) : (
+                  <>
+                    <FaPaperPlane /> Send Message
+                  </>
+                )}
               </button>
             </form>
           </div>
