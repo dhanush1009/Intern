@@ -5,7 +5,7 @@
 /* Hero Section */
 .hero {
   min-height: 90vh;
-  background: linear-gradient(135deg, #ffffff 0%, #eff6ff 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,7 +55,7 @@
 }
 
 .hero-title .highlight {
-  color: #2563eb;
+  color: #ea580c;
 }
 
 .hero-features {
@@ -73,7 +73,7 @@
 }
 
 .divider {
-  color: #2563eb;
+  color: #ea580c;
   font-weight: 700;
 }
 
@@ -98,30 +98,30 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
   color: #fff;
   border-color: transparent;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
   color: #fff;
   border-color: transparent;
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 15px 30px rgba(249, 115, 22, 0.4);
 }
 
 .btn-secondary {
   background: transparent;
   color: #1e293b;
-  border: 2px solid #2563eb;
+  border: 2px solid #ea580c;
 }
 
 .btn-secondary:hover {
-  background: #2563eb;
+  background: #ea580c;
   color: #fff;
   transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 15px 30px rgba(234, 88, 12, 0.3);
 }
 
 /* Hero Image/Illustration */
@@ -131,6 +131,129 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Orbiting Icons Container */
+.orbit-container {
+  position: relative;
+  width: 450px;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Orbit circles */
+.orbit {
+  position: absolute;
+  border: 2px solid rgba(234, 88, 12, 0.3);
+  border-radius: 50%;
+  animation: spin 30s linear infinite;
+}
+
+.orbit-outer {
+  width: 400px;
+  height: 400px;
+  animation-duration: 35s;
+}
+
+.orbit-inner {
+  width: 260px;
+  height: 260px;
+  animation-duration: 25s;
+  animation-direction: reverse;
+}
+
+/* Orbit icons on outer circle */
+.orbit-icon {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  background: var(--icon-bg, #fff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  animation: counter-spin 35s linear infinite;
+  border: 3px solid white;
+}
+
+.orbit-icon svg {
+  font-size: 1.4rem;
+  color: var(--icon-color, #ea580c);
+}
+
+/* Position icons on outer orbit (6 icons, 60 degrees apart) */
+.icon-1 { top: 0; left: 50%; transform: translateX(-50%); }
+.icon-2 { top: 15%; right: 2%; }
+.icon-3 { bottom: 15%; right: 2%; }
+.icon-4 { bottom: 0; left: 50%; transform: translateX(-50%); }
+.icon-5 { bottom: 15%; left: 2%; }
+.icon-6 { top: 15%; left: 2%; }
+
+/* Inner orbit icons */
+.orbit-icon-inner {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background: var(--icon-bg, #fff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  animation: counter-spin-reverse 25s linear infinite;
+  border: 3px solid white;
+}
+
+.orbit-icon-inner svg {
+  font-size: 1.2rem;
+  color: var(--icon-color, #ea580c);
+}
+
+/* Position icons on inner orbit (4 icons, 90 degrees apart) */
+.inner-1 { top: 0; left: 50%; transform: translateX(-50%); }
+.inner-2 { top: 50%; right: 0; transform: translateY(-50%); }
+.inner-3 { bottom: 0; left: 50%; transform: translateX(-50%); }
+.inner-4 { top: 50%; left: 0; transform: translateY(-50%); }
+
+/* Center logo */
+.orbit-center {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 15px rgba(234, 88, 12, 0.1), 
+              0 0 0 30px rgba(234, 88, 12, 0.05),
+              0 15px 40px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  position: relative;
+}
+
+.center-logo {
+  width: 80px;
+  height: 80px;
+}
+
+/* Spin animation for orbits */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Counter-spin to keep icons upright */
+@keyframes counter-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes counter-spin-reverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .floating-card {
@@ -149,7 +272,7 @@
 
 .floating-card .card-icon {
   font-size: 2.5rem;
-  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #9a3412 0%, #f97316 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -221,13 +344,13 @@
 
 .stat-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.25);
-  border-color: #2563eb;
+  box-shadow: 0 20px 40px rgba(234, 88, 12, 0.25);
+  border-color: #ea580c;
 }
 
 .stat-icon {
   font-size: 3rem;
-  background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -250,7 +373,7 @@
 /* Highlight Section */
 .highlight-section {
   padding: 80px 50px;
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
   color: #1e293b;
 }
 
@@ -314,7 +437,7 @@
 
 .step-icon svg {
   font-size: 2rem;
-  background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -341,7 +464,7 @@
 .journey-arrow {
   font-size: 2rem;
   font-weight: bold;
-  color: #2563eb;
+  color: #ea580c;
   animation: pulse 2s ease-in-out infinite;
 }
 
@@ -390,15 +513,15 @@
 
 .feature-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.25);
-  border-color: #2563eb;
+  box-shadow: 0 20px 40px rgba(234, 88, 12, 0.25);
+  border-color: #ea580c;
 }
 
 .feature-icon {
   width: 70px;
   height: 70px;
   border-radius: 20px;
-  background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -433,6 +556,49 @@
 
   .hero-image {
     height: 300px;
+  }
+  
+  .orbit-container {
+    width: 380px;
+    height: 380px;
+  }
+  
+  .orbit-outer {
+    width: 340px;
+    height: 340px;
+  }
+  
+  .orbit-inner {
+    width: 220px;
+    height: 220px;
+  }
+  
+  .orbit-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .orbit-icon svg {
+    font-size: 1.2rem;
+  }
+  
+  .orbit-icon-inner {
+    width: 42px;
+    height: 42px;
+  }
+  
+  .orbit-icon-inner svg {
+    font-size: 1rem;
+  }
+  
+  .orbit-center {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .center-logo {
+    width: 65px;
+    height: 65px;
   }
 
   .hero-title {
@@ -475,6 +641,52 @@
     text-align: center;
     justify-content: center;
   }
+  
+  .orbit-container {
+    width: 320px;
+    height: 320px;
+  }
+  
+  .orbit-outer {
+    width: 280px;
+    height: 280px;
+  }
+  
+  .orbit-inner {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .orbit-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .orbit-icon svg {
+    font-size: 1rem;
+  }
+  
+  .orbit-icon-inner {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .orbit-icon-inner svg {
+    font-size: 0.9rem;
+  }
+  
+  .orbit-center {
+    width: 80px;
+    height: 80px;
+    box-shadow: 0 0 0 10px rgba(234, 88, 12, 0.1), 
+                0 0 0 20px rgba(234, 88, 12, 0.05),
+                0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .center-logo {
+    width: 50px;
+    height: 50px;
+  }
 
   .stats-container,
   .features-grid {
@@ -503,3 +715,6 @@
     font-size: 1.5rem;
   }
 }
+
+
+

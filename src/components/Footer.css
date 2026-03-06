@@ -52,7 +52,7 @@
 }
 
 .footer-section ul li a:hover {
-  color: #60a5fa;
+  color: #fb923c;
   transform: translateX(5px);
 }
 
@@ -66,21 +66,21 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(59, 130, 246, 0.2);
-  border: 2px solid #2563eb;
+  background: rgba(249, 115, 22, 0.2);
+  border: 2px solid #ea580c;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #60a5fa;
+  color: #fb923c;
   transition: all 0.3s ease;
   text-decoration: none;
 }
 
 .social-icon:hover {
-  background: #2563eb;
+  background: #ea580c;
   color: #fff;
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+  box-shadow: 0 5px 15px rgba(234, 88, 12, 0.4);
 }
 
 .contact-info {
@@ -97,7 +97,7 @@
 }
 
 .contact-item svg {
-  color: #60a5fa;
+  color: #fb923c;
   margin-top: 4px;
   font-size: 1.2rem;
   flex-shrink: 0;
@@ -133,3 +133,5 @@
     padding: 40px 0 20px;
   }
 }
+
+

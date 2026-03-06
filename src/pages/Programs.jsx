@@ -81,17 +81,19 @@ const Programs = () => {
 
   return (
     <div className="programs">
-      {/* Programs Grid */}
+      {/* Programs Section */}
       <section className="programs-section">
         <div className="programs-container">
-          <div className="section-intro">
-            <h1 style={{fontSize: '3rem', marginBottom: '10px'}}>Our Training Programs</h1>
-            <h2 style={{fontSize: '2rem', fontWeight: '400', color: '#666', marginBottom: '20px', marginTop: '0'}}>Choose Your Path</h2>
-            <p>
-              All our programs include hands-on projects, expert mentorship, certification, and placement assistance
-            </p>
+          {/* Section Header */}
+          <div className="section-header">
+            <div className="header-badge">Our Courses</div>
+            <h1>Training Programs</h1>
+            <p>All our programs include hands-on projects, expert mentorship, certification, and placement assistance</p>
+            <Link to="/contact" className="header-cta-btn">
+              Get Started <FaArrowRight />
+            </Link>
           </div>
-
+          
           <div className="programs-grid">
             {programs.map((program) => (
               <div key={program.id} className="program-card">

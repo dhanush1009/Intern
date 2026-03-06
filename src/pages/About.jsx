@@ -14,6 +14,13 @@ const About = () => {
       {/* Main About Section */}
       <section className="about-main">
         <div className="about-container">
+          {/* Section Header */}
+          <div className="section-header">
+            <div className="header-badge">Who We Are</div>
+            <h1>About Us</h1>
+            <p>Empowering the next generation of tech professionals through quality education and mentorship</p>
+          </div>
+          
           <div className="about-content">
             <div className="about-text">
               <h2>Create Your Tomorrow With Us</h2>

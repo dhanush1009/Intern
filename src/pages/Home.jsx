@@ -8,8 +8,14 @@ import {
   FaBook,
   FaProjectDiagram,
   FaAward,
-  FaUsers
+  FaUsers,
+  FaGraduationCap,
+  FaCode,
+  FaTrophy,
+  FaRocket,
+  FaCube
 } from 'react-icons/fa';
+import logo from '../assets/logo.svg';
 import './Home.css';
 
 const Home = () => {
@@ -40,18 +46,50 @@ const Home = () => {
               </Link>
             </div>
           </div>
-          <div className="hero-image">
-            <div className="floating-card card-1">
-              <FaLaptopCode className="card-icon" />
-              <p>Learn</p>
+          
+          {/* Orbiting Icons Section */}
+          <div className="orbit-container">
+            {/* Outer orbit */}
+            <div className="orbit orbit-outer">
+              <div className="orbit-icon icon-1" style={{ '--icon-bg': '#fed7aa', '--icon-color': '#ea580c' }}>
+                <FaLaptopCode />
+              </div>
+              <div className="orbit-icon icon-2" style={{ '--icon-bg': '#fef3c7', '--icon-color': '#d97706' }}>
+                <FaCertificate />
+              </div>
+              <div className="orbit-icon icon-3" style={{ '--icon-bg': '#f3f4f6', '--icon-color': '#1f2937' }}>
+                <FaGraduationCap />
+              </div>
+              <div className="orbit-icon icon-4" style={{ '--icon-bg': '#fce7f3', '--icon-color': '#db2777' }}>
+                <FaBriefcase />
+              </div>
+              <div className="orbit-icon icon-5" style={{ '--icon-bg': '#ffedd5', '--icon-color': '#c2410c' }}>
+                <FaCube />
+              </div>
+              <div className="orbit-icon icon-6" style={{ '--icon-bg': '#fff7ed', '--icon-color': '#9a3412' }}>
+                <FaRocket />
+              </div>
             </div>
-            <div className="floating-card card-2">
-              <FaProjectDiagram className="card-icon" />
-              <p>Build</p>
+            
+            {/* Inner orbit */}
+            <div className="orbit orbit-inner">
+              <div className="orbit-icon-inner inner-1" style={{ '--icon-bg': '#fef9c3', '--icon-color': '#ca8a04' }}>
+                <FaChartLine />
+              </div>
+              <div className="orbit-icon-inner inner-2" style={{ '--icon-bg': '#ede9fe', '--icon-color': '#7c3aed' }}>
+                <FaTrophy />
+              </div>
+              <div className="orbit-icon-inner inner-3" style={{ '--icon-bg': '#fee2e2', '--icon-color': '#dc2626' }}>
+                <FaCode />
+              </div>
+              <div className="orbit-icon-inner inner-4" style={{ '--icon-bg': '#ccfbf1', '--icon-color': '#0d9488' }}>
+                <FaProjectDiagram />
+              </div>
             </div>
-            <div className="floating-card card-3">
-              <FaAward className="card-icon" />
-              <p>Succeed</p>
+            
+            {/* Center logo */}
+            <div className="orbit-center">
+              <img src={logo} alt="Shanruck Technologies" className="center-logo" />
             </div>
           </div>
         </div>

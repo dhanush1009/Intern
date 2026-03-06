@@ -4,26 +4,47 @@
 
 /* Main About Section */
 .about-main {
-  padding: 100px 50px 80px;
+  padding: 80px 50px;
   background: #fff;
 }
 
-.page-title {
+/* Section Header */
+.section-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
-.page-title h1 {
+.header-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 15px rgba(234, 88, 12, 0.3);
+}
+
+.section-header h1 {
   font-size: 3rem;
+  font-weight: 800;
   color: #1e293b;
   margin-bottom: 15px;
-  font-weight: 700;
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.page-title .subtitle {
-  font-size: 1.3rem;
-  color: #475569;
-  font-weight: 500;
+.section-header p {
+  font-size: 1.15rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
 }
 
 .about-container {
@@ -39,21 +60,21 @@
 }
 
 .about-text h2 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: #1e293b;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   font-weight: 700;
 }
 
 .about-text p {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   line-height: 1.8;
   color: #334155;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
 .about-text strong {
-  color: #2563eb;
+  color: #ea580c;
   font-weight: 600;
 }
 
@@ -66,12 +87,12 @@
 .image-placeholder {
   width: 350px;
   height: 350px;
-  background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 25px 60px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 25px 60px rgba(234, 88, 12, 0.3);
   animation: float 3s ease-in-out infinite;
 }
 
@@ -93,7 +114,7 @@
 /* Vision Section */
 .vision-section {
   padding: 80px 50px;
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
   color: #1e293b;
   text-align: center;
 }
@@ -119,7 +140,7 @@
 
 .section-icon {
   font-size: 3rem;
-  background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -164,7 +185,7 @@
 }
 
 .mission-icon-wrapper .section-icon {
-  background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -204,7 +225,7 @@
 .value-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  border-color: #2563eb;
+  border-color: #ea580c;
   background: white;
 }
 
@@ -212,7 +233,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #2563eb 0%, #60a5fa 100%);
+  background: linear-gradient(135deg, #ea580c 0%, #fb923c 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -240,7 +261,7 @@
 /* Difference Section */
 .difference-section {
   padding: 80px 50px;
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
   color: #1e293b;
 }
 
@@ -272,14 +293,14 @@
 .difference-item:hover {
   background: rgba(255, 255, 255, 0.95);
   transform: translateY(-10px);
-  border-color: #2563eb;
-  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+  border-color: #ea580c;
+  box-shadow: 0 15px 30px rgba(234, 88, 12, 0.2);
 }
 
 .difference-number {
   font-size: 3rem;
   font-weight: 800;
-  color: rgba(37, 99, 235, 0.2);
+  color: rgba(234, 88, 12, 0.2);
   margin-bottom: 20px;
 }
 
@@ -312,6 +333,10 @@
   .placeholder-icon {
     font-size: 8rem;
   }
+  
+  .section-header h1 {
+    font-size: 2.5rem;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -320,15 +345,15 @@
   .mission-section,
   .values-section,
   .difference-section {
-    padding: 60px 30px;
+    padding: 60px 20px;
   }
 
-  .page-title h1 {
-    font-size: 2.2rem;
+  .section-header h1 {
+    font-size: 2rem;
   }
-
-  .page-title .subtitle {
-    font-size: 1.1rem;
+  
+  .section-header p {
+    font-size: 1rem;
   }
 
   .about-text h2,
@@ -336,13 +361,13 @@
   .mission-section h2,
   .values-section h2,
   .difference-section h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 
   .about-text p,
   .vision-content,
   .mission-content {
-    font-size: 1.05rem;
+    font-size: 1rem;
   }
 
   .image-placeholder {
@@ -359,3 +384,5 @@
     grid-template-columns: 1fr;
   }
 }
+
+

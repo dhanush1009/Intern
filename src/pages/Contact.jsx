@@ -173,15 +173,21 @@ const Contact = () => {
 
       {/* Contact Form and Info Section */}
       <section className="contact-main">
-        <div className="page-title-center">
-          <h1>Get In Touch</h1>
-          <p className="subtitle">We're here to help you start your learning journey. Reach out to us today!</p>
-        </div>
         <div className="contact-container">
-          {/* Contact Form */}
-          <div className="contact-form-wrapper">
-            <h2>Send Us a Message</h2>
-            <p className="form-subtitle">Fill out the form below and we'll get back to you within 24 hours</p>
+          {/* Section Header */}
+          <div className="section-header">
+            <div className="header-badge">Contact Us</div>
+            <h1>Let's Connect</h1>
+            <p>Ready to start your tech journey? Reach out to us and we'll help you find the perfect program</p>
+          </div>
+          
+          <div className="contact-grid">
+            {/* Contact Form */}
+            <div className="contact-form-wrapper">
+              <div className="form-header">
+                <h2>Send Us a Message</h2>
+                <p>Fill out the form and we'll get back to you within 24 hours</p>
+              </div>
             
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
@@ -277,40 +283,50 @@ const Contact = () => {
 
           {/* Contact Information */}
           <div className="contact-info-wrapper">
-            <h2>Contact Information</h2>
-            <p className="info-subtitle">Get in touch with us through any of these channels</p>
+            <div className="info-header">
+              <h2>Contact Information</h2>
+              <p>Get in touch with us through any of these channels</p>
+            </div>
 
             <div className="contact-info-cards">
               <div className="info-card">
                 <div className="info-icon">
                   <FaMapMarkerAlt />
                 </div>
-                <h3>Our Location</h3>
-                <p>123 Tech Street, Innovation Hub<br />Bangalore, Karnataka 560001<br />India</p>
+                <div className="info-card-content">
+                  <h3>Our Location</h3>
+                  <p>123 Tech Street, Innovation Hub<br />Bangalore, Karnataka 560001</p>
+                </div>
               </div>
 
               <div className="info-card">
                 <div className="info-icon">
                   <FaPhone />
                 </div>
-                <h3>Phone Number</h3>
-                <p>+91 9876543210<br />+91 9876543211</p>
+                <div className="info-card-content">
+                  <h3>Phone Number</h3>
+                  <p>+91 9876543210<br />+91 9876543211</p>
+                </div>
               </div>
 
               <div className="info-card">
                 <div className="info-icon">
                   <FaEnvelope />
                 </div>
-                <h3>Email Address</h3>
-                <p>info@shanrucktech.com<br />support@shanrucktech.com</p>
+                <div className="info-card-content">
+                  <h3>Email Address</h3>
+                  <p>info@shanrucktech.com<br />support@shanrucktech.com</p>
+                </div>
               </div>
 
               <div className="info-card">
                 <div className="info-icon">
                   <FaClock />
                 </div>
-                <h3>Working Hours</h3>
-                <p>Monday - Saturday<br />9:00 AM - 6:00 PM</p>
+                <div className="info-card-content">
+                  <h3>Working Hours</h3>
+                  <p>Monday - Saturday<br />9:00 AM - 6:00 PM</p>
+                </div>
               </div>
             </div>
 
@@ -331,6 +347,7 @@ const Contact = () => {
                 </a>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>
