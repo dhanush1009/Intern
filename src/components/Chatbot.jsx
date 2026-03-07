@@ -1,0 +1,389 @@
+import { useState, useRef, useEffect } from 'react';
+import { FaRobot, FaTimes, FaPaperPlane, FaUser, FaEllipsisV, FaTrash, FaPlus } from 'react-icons/fa';
+import './Chatbot.css';
+
+const Chatbot = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+  
+  const welcomeMessage = {
+    text: "Hi! 👋 I'm Shanruck Assistant, your personal guide!\n\n🎓 I can help you with:\n• All 7 training programs\n• Enrollment & fees\n• Placement support\n• Course details\n• Student reviews\n\nTry the quick buttons below or ask me anything! 😊",
+    sender: 'bot',
+    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  };
+
+  // Load chat history from localStorage or start with welcome message
+  const [messages, setMessages] = useState(() => {
+    const savedMessages = localStorage.getItem('chatHistory');
+    if (savedMessages) {
+      return JSON.parse(savedMessages);
+    }
+    return [welcomeMessage];
+  });
+  
+  const [inputMessage, setInputMessage] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  // Save messages to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('chatHistory', JSON.stringify(messages));
+  }, [messages]);
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showMenu && !event.target.closest('.header-actions')) {
+        setShowMenu(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showMenu]);
+
+  // Quick reply buttons - Updated for better guidance
+  const quickReplies = [
+    "What programs do you offer?",
+    "Tell me about Full Stack course",
+    "How do I enroll?",
+    "What are the fees?",
+    "Do you provide placement?",
+    "Show student reviews"
+  ];
+
+  // Bot responses database - Comprehensively trained for your website
+  const getBotResponse = (userMessage) => {
+    const message = userMessage.toLowerCase();
+
+    // Full Stack Web Development
+    if (message.includes('full stack') || message.includes('fullstack') || message.includes('mern') || message.includes('mean')) {
+      return "💻 Full Stack Web Development (6 Months)\n\n📚 What You'll Learn:\n✅ Front-end: HTML, CSS, JavaScript, React\n✅ Back-end: Node.js, Express, MongoDB\n✅ Build complete web applications\n✅ RESTful APIs & Database Design\n\n🎯 Level: Beginner to Advanced\n\n✨ Includes:\n• Live interactive classes\n• Hands-on projects\n• Expert mentorship\n• Placement assistance\n• Official certification\n\nInterested? Contact us: +91 9876543210";
+    }
+
+    // Python Programming
+    if (message.includes('python') && !message.includes('course') && !message.includes('program')) {
+      return "🐍 Python Project-Based Learning (4 Months)\n\n📚 What You'll Learn:\n✅ Python fundamentals & syntax\n✅ Data structures & OOP\n✅ Web scraping & automation\n✅ Real-world project development\n\n🎯 Level: Beginner Friendly\n\n✨ Perfect for:\n• Complete beginners\n• Career switchers\n• Automation enthusiasts\n• Data science aspirants\n\nStart your Python journey today! 📞 +91 9876543210";
+    }
+
+    // WordPress Development
+    if (message.includes('wordpress') || message.includes('wp') || message.includes('website')) {
+      return "🌐 WordPress Development (3 Months)\n\n📚 What You'll Learn:\n✅ WordPress setup & configuration\n✅ Theme customization & development\n✅ Plugin development\n✅ SEO optimization\n✅ Build responsive websites\n\n🎯 Level: Beginner Friendly\n\n💼 Career Options:\n• Freelance web developer\n• WordPress specialist\n• Digital agency roles\n\nBuild professional websites! Contact: info@shanrucktech.com";
+    }
+
+    // Java Programming
+    if (message.includes('java') && !message.includes('javascript')) {
+      return "☕ Java Programming (5 Months)\n\n📚 What You'll Learn:\n✅ Java fundamentals & OOP concepts\n✅ Collections & data structures\n✅ Multithreading & concurrency\n✅ JDBC & database integration\n✅ Servlets & enterprise applications\n\n🎯 Level: Beginner to Advanced\n\n🚀 Build:\n• Desktop applications\n• Web applications\n• Enterprise systems\n\nMaster Java! 📞 +91 9876543210";
+    }
+
+    // JavaScript Frameworks (React & Angular)
+    if (message.includes('javascript') || message.includes('react') || message.includes('angular') || message.includes('framework')) {
+      return "⚛️ JavaScript Frameworks - Angular & React (4 Months)\n\n📚 What You'll Learn:\n✅ Advanced JavaScript (ES6+)\n✅ React fundamentals & hooks\n✅ Angular architecture\n✅ State management\n✅ Build dynamic SPAs\n\n🎯 Level: Intermediate\n\n💡 Prerequisites:\n• Basic JavaScript knowledge\n• HTML & CSS basics\n\n🎨 Build modern web apps! Contact: +91 9876543210";
+    }
+
+    // UI/UX Design
+    if (message.includes('ui') || message.includes('ux') || message.includes('design') || message.includes('figma')) {
+      return "🎨 UI/UX Design (3 Months)\n\n📚 What You'll Learn:\n✅ Design thinking & principles\n✅ Figma & design tools mastery\n✅ Prototyping & wireframing\n✅ User research & testing\n✅ Create stunning digital experiences\n\n🎯 Level: Beginner Friendly\n\n✨ Perfect for:\n• Creative professionals\n• Career switchers\n• Developers wanting design skills\n\nDesign beautiful products! 📞 +91 9876543210";
+    }
+
+    // Cybersecurity
+    if (message.includes('cyber') || message.includes('security') || message.includes('ethical') || message.includes('hacking')) {
+      return "🛡️ Cybersecurity Fundamentals (4 Months)\n\n📚 What You'll Learn:\n✅ Network security basics\n✅ Ethical hacking techniques\n✅ Cryptography essentials\n✅ Vulnerability assessment\n✅ Security best practices\n\n🎯 Level: Beginner to Intermediate\n\n🔒 Career Paths:\n• Security analyst\n• Penetration tester\n• Security consultant\n\nSecure the digital world! 📞 +91 9876543210";
+    }
+
+    // General Courses/Programs Query
+    if (message.includes('course') || message.includes('program') || message.includes('training') || message.includes('learn')) {
+      return "🎓 Our 7 Comprehensive Programs:\n\n1️⃣ Full Stack Web Development - 6 months\n2️⃣ Python Project-Based Learning - 4 months\n3️⃣ WordPress Development - 3 months\n4️⃣ Java Programming - 5 months\n5️⃣ JavaScript Frameworks (React & Angular) - 4 months\n6️⃣ UI/UX Design - 3 months\n7️⃣ Cybersecurity Fundamentals - 4 months\n\n✨ Every program includes:\n• Live interactive classes\n• Hands-on projects\n• Expert mentorship\n• Official certification\n• Placement assistance\n\nAsk about any specific course! 😊";
+    }
+
+    // About Shanruck Technologies
+    if (message.includes('about') || message.includes('who are you') || message.includes('company') || message.includes('shanruck')) {
+      return "🏢 About Shanruck Technologies:\n\nWe provide immersive training programs to help you develop practical skills for today's competitive job market.\n\n🎯 Our Focus:\n✅ Hands-on project-based learning\n✅ Real-world industry guidance\n✅ Career development support\n✅ Especially for freshers & beginners\n\n💡 Our Vision:\nEvery individual discovers their potential and builds a meaningful career.\n\n🚀 Our Mission:\nProvide structured career support & skill-based training to empower individuals.\n\nStart your journey with us! 📞 +91 9876543210";
+    }
+
+    // Benefits / What You Get
+    if (message.includes('benefit') || message.includes('feature') || message.includes('what will i get') || message.includes('include')) {
+      return "✨ What You Get With Every Program:\n\n1️⃣ Live Interactive Classes\n• Learn from industry experts\n• Engaging sessions with live Q&A\n\n2️⃣ Hands-On Projects\n• Build real-world applications\n• Create impressive portfolio\n\n3️⃣ Expert Mentorship\n• Personalized guidance\n• One-on-one support\n\n4️⃣ Official Certification\n• Industry-recognized certificate\n• Digital & physical copies\n\n5️⃣ Placement Assistance\n• Resume preparation\n• Interview coaching\n• Job referrals\n\n6️⃣ Career Support\n• Industry connections\n• Professional guidance\n\nReady to start? 📞 +91 9876543210";
+    }
+
+    // Enrollment/Registration
+    if (message.includes('enroll') || message.includes('register') || message.includes('join') || message.includes('admission') || message.includes('apply')) {
+      return "📝 Easy Enrollment Process:\n\n1️⃣ Visit our Contact page\n2️⃣ Fill out the enquiry form with your details\n3️⃣ Our team contacts you within 24 hours\n4️⃣ Schedule a free counseling session\n5️⃣ Complete your enrollment\n6️⃣ Start learning! 🚀\n\n💡 Quick Contact:\n📞 +91 9876543210\n📧 info@shanrucktech.com\n\nOr click Contact Us on our website!\n\nReady to transform your career? Let's get started! 😊";
+    }
+
+    // Duration
+    if (message.includes('duration') || message.includes('how long') || message.includes('time period')) {
+      return "⏱️ Program Durations:\n\n📅 3 Months:\n• WordPress Development\n• UI/UX Design\n\n📅 4 Months:\n• Python Project-Based Learning\n• JavaScript Frameworks\n• Cybersecurity Fundamentals\n\n📅 5 Months:\n• Java Programming\n\n📅 6 Months:\n• Full Stack Web Development\n\n✅ All programs have:\n• Flexible schedules\n• Weekend batches available\n• Part-time & full-time options\n\nWhich program interests you? 😊";
+    }
+
+    // Contact/Location
+    if (message.includes('contact') || message.includes('phone') || message.includes('email') || message.includes('location') || message.includes('address') || message.includes('reach')) {
+      return "📍 Contact Shanruck Technologies:\n\n🏢 Office Address:\n123 Tech Street, Innovation Hub\nBangalore, Karnataka 560001\nIndia\n\n📞 Phone Numbers:\n+91 9876543210\n+91 9876543211\n\n📧 Email Addresses:\ninfo@shanrucktech.com\nsupport@shanrucktech.com\n\n🕒 Working Hours:\nMonday - Saturday\n9:00 AM - 6:00 PM\n\n💬 Or fill our contact form on the website!\n\nWe'd love to hear from you! 😊";
+    }
+
+    // Fees/Price
+    if (message.includes('fee') || message.includes('cost') || message.includes('price') || message.includes('charge') || message.includes('payment')) {
+      return "💰 Course Fees & Payment:\n\nFor detailed fee structure and payment plans:\n\n📞 Call: +91 9876543210\n📧 Email: info@shanrucktech.com\n\n✨ We Offer:\n✅ Flexible payment options\n✅ Installment facilities\n✅ Special discounts for early birds\n✅ Group enrollment benefits\n✅ Scholarship opportunities\n\n💡 Investment in your future!\n\nContact our admissions team for personalized fee details based on your chosen program. 😊";
+    }
+
+    // Placement/Job/Career Support
+    if (message.includes('placement') || message.includes('job') || message.includes('career') || message.includes('hire') || message.includes('salary')) {
+      return "🎯 Placement & Career Support:\n\n✅ Dedicated Placement Cell:\n• Resume building & optimization\n• Mock interviews & preparation\n• LinkedIn profile enhancement\n• Portfolio development guidance\n\n✅ Industry Connections:\n• Hiring partner network\n• Job referrals\n• Company tie-ups\n• Campus drives\n\n✅ Career Counseling:\n• One-on-one guidance\n• Career path planning\n• Skill gap analysis\n• Professional development\n\n📊 Our Track Record:\n• 500+ students trained\n• 85% placement rate\n• Average 40% salary hike\n• 100+ hiring partners\n\nBuild your dream career! 📞 +91 9876543210";
+    }
+
+    // Certification
+    if (message.includes('certificate') || message.includes('certification') || message.includes('credential')) {
+      return "🏆 Certification Details:\n\n✅ What You'll Receive:\n• Official program completion certificate\n• Industry-recognized credential\n• Both digital & physical copies\n• Verifiable online\n• Add to LinkedIn profile\n\n📋 Certification Criteria:\n• Complete all course modules\n• Submit all assignments\n• Finish hands-on projects\n• Pass final assessment\n\n✨ Certificate Benefits:\n• Boost your resume\n• Showcase your skills\n• Gain employer trust\n• Stand out in job market\n\nEarn your certification today! 📞 +91 9876543210";
+    }
+
+    // Mentorship/Instructors
+    if (message.includes('mentor') || message.includes('teacher') || message.includes('instructor') || message.includes('trainer') || message.includes('faculty')) {
+      return "👨‍🏫 Expert Mentorship:\n\n✅ Our Instructors:\n• Industry professionals with 5-15 years experience\n• Working at top tech companies\n• Real-world project experience\n• Passionate about teaching\n\n✅ Learning Experience:\n• Live interactive classes\n• One-on-one guidance sessions\n• Personalized feedback\n• Doubt clearing support\n• Project code reviews\n• Career advice\n\n✅ Small Batch Sizes:\n• Individual attention\n• Interactive learning\n• Better engagement\n\nLearn from the best! 📞 +91 9876543210";
+    }
+
+    // Online/Offline/Mode
+    if (message.includes('online') || message.includes('offline') || message.includes('mode') || message.includes('class') || message.includes('batch')) {
+      return "🖥️ Learning Modes & Batches:\n\n✅ Flexible Options:\n• Online live classes\n• Offline classroom training\n• Hybrid mode available\n\n✅ Batch Timings:\n• Weekday batches\n• Weekend batches\n• Morning & evening slots\n\n✅ Features:\n• Recorded sessions available\n• Lifetime access to materials\n• Interactive whiteboard\n• Screen sharing\n• Live coding sessions\n\n📞 Contact us to discuss:\n+91 9876543210\n📧 info@shanrucktech.com\n\nChoose what fits your schedule! 😊";
+    }
+
+    // Prerequisites/Requirements
+    if (message.includes('prerequisite') || message.includes('requirement') || message.includes('beginner') || message.includes('need to know') || message.includes('experience')) {
+      return "📋 Prerequisites & Requirements:\n\n✅ Most Courses Are Beginner-Friendly!\n\n🟢 No Experience Needed:\n• Full Stack Development\n• Python Programming\n• WordPress Development\n• UI/UX Design\n• Java Programming\n• Cybersecurity Fundamentals\n\n🟡 Basic Knowledge Helpful:\n• JavaScript Frameworks (HTML, CSS, JS basics)\n\n✅ General Requirements:\n• Basic computer knowledge\n• Internet connection\n• Laptop/Desktop\n• Passion to learn!\n• Dedication & practice\n\n💡 Don't worry if you're a complete beginner - we'll guide you step by step! 😊\n\nReady to start? 📞 +91 9876543210";
+    }
+
+    // Student Reviews/Testimonials
+    if (message.includes('review') || message.includes('testimonial') || message.includes('feedback') || message.includes('student') || message.includes('alumni')) {
+      return "⭐ What Our Students Say:\n\n🎓 Priya Sharma (Full Stack Developer):\n\"Shanruck transformed my career! Hands-on approach and expert mentorship helped me land my dream job.\"\n\n🎓 Rahul Kumar (Python Developer):\n\"Best decision ever! Went from zero coding to building real applications in 4 months.\"\n\n🎓 Sneha Patel (UI/UX Designer):\n\"Exceeded expectations! Portfolio projects helped me get hired immediately after graduation.\"\n\n🎓 Arjun Reddy (Java Developer):\n\"Excellent training! Instructors share practical industry knowledge.\"\n\n📊 Our Results:\n✅ 500+ students trained\n✅ 85% placement rate\n✅ 5-star rating\n✅ 100+ hiring partners\n\nJoin our success stories! 📞 +91 9876543210";
+    }
+
+    // Batch/Schedule
+    if (message.includes('batch') || message.includes('timing') || message.includes('schedule') || message.includes('when start')) {
+      return "📅 Batch Information:\n\n✅ Multiple Batches Available:\n• Morning batch: 8 AM - 11 AM\n• Afternoon batch: 2 PM - 5 PM\n• Evening batch: 6 PM - 9 PM\n• Weekend batch: Sat-Sun 10 AM - 5 PM\n\n✅ Flexibility:\n• New batches every month\n• Can switch batches if needed\n• Makeup classes available\n• Recorded sessions provided\n\n📞 For next batch dates:\nCall: +91 9876543210\n📧 Email: info@shanrucktech.com\n\nEnroll now to secure your spot! 😊";
+    }
+
+    // Demo/Trial Class
+    if (message.includes('demo') || message.includes('trial') || message.includes('free class') || message.includes('sample')) {
+      return "🎬 Free Demo Class:\n\n✅ What You'll Experience:\n• Meet our expert instructors\n• Understand teaching methodology\n• See course curriculum\n• Ask questions\n• Get course roadmap\n• No obligations!\n\n📞 Book Your Free Demo:\nCall: +91 9876543210\n📧 Email: info@shanrucktech.com\n\n💡 Try before you commit!\n\nDemos available for all programs. Experience the Shanruck difference! 😊";
+    }
+
+    // Projects/Portfolio
+    if (message.includes('project') || message.includes('portfolio') || message.includes('practical') || message.includes('hands-on')) {
+      return "💼 Hands-On Projects:\n\n✅ What You'll Build:\n• Real-world applications\n• Industry-standard projects\n• Live deployable websites\n• GitHub portfolio\n• Production-ready code\n\n✅ Project Benefits:\n• Practical experience\n• Portfolio for job interviews\n• Understanding of full dev cycle\n• Problem-solving skills\n• Teamwork experience\n\n✅ Project Support:\n• Instructor guidance\n• Code reviews\n• Best practices\n• Deployment help\n\n🚀 Every program includes multiple hands-on projects!\n\nBuild impressive portfolio! 📞 +91 9876543210";
+    }
+
+    // Success Rate/Results
+    if (message.includes('success') || message.includes('result') || message.includes('pass rate') || message.includes('achievement')) {
+      return "📊 Our Success Metrics:\n\n✅ Training Impact:\n• 500+ students trained\n• 95% course completion rate\n• 85% placement rate\n• 40% average salary hike\n\n✅ Industry Recognition:\n• 100+ hiring partners\n• Tie-ups with top companies\n• Industry-recognized certificates\n• Alumni network in major tech firms\n\n✅ Student Satisfaction:\n• 5-star average rating\n• 90%+ recommend us\n• High student retention\n\n🏆 Our students work at:\n• IT companies\n• Startups\n• MNCs\n• Freelance careers\n\nBe part of our success! 📞 +91 9876543210";
+    }
+
+    // Help/Support
+    if (message.includes('help') || message.includes('support') || message.includes('assist') || message.includes('query')) {
+      return "🤝 We're Here to Help!\n\n✅ How We Can Assist:\n• Course selection guidance\n• Career counseling\n• Fee structure details\n• Enrollment process\n• Batch information\n• Technical queries\n• General questions\n\n📞 Contact Methods:\n• Phone: +91 9876543210\n• Email: info@shanrucktech.com\n• WhatsApp: Available\n• Contact form on website\n\n⏰ Available:\nMonday - Saturday\n9:00 AM - 6:00 PM\n\nAsk me anything about our programs! 😊";
+    }
+
+    // Greetings
+    if (message.includes('hello') || message.includes('hi') || message.includes('hey') || message.includes('good morning') || message.includes('good afternoon') || message.includes('good evening')) {
+      return "Hello! 👋 Welcome to Shanruck Technologies!\n\n🎓 I'm your virtual assistant, here to guide you through:\n\n🔸 7 specialized training programs\n🔸 Enrollment & admission process\n🔸 Course details & duration\n🔸 Placement assistance\n🔸 Fees & payment options\n🔸 Certification information\n🔸 Student testimonials\n🔸 Contact details\n\n💡 Try asking:\n• \"Tell me about Full Stack course\"\n• \"What programs do you offer?\"\n• \"How do I enroll?\"\n• \"What are the fees?\"\n\nHow can I help you today? 😊";
+    }
+
+    // Thanks
+    if (message.includes('thank') || message.includes('thanks') || message.includes('appreciate')) {
+      return "You're very welcome! 😊 \n\n🎉 Happy to help you explore your career options!\n\n💡 Need more information?\n• Ask me more questions\n• Call: +91 9876543210\n• Email: info@shanrucktech.com\n• Visit our Contact page\n\n🚀 Ready to start your tech journey?\nWe're here to support you every step of the way!\n\nGood luck with your learning journey! 🌟";
+    }
+
+    // Default response with suggestions
+    return "I'm here to guide you! 😊\n\n🎯 I can help you with:\n\n📚 Programs:\n• Full Stack Development\n• Python Programming\n• WordPress Development\n• Java Programming\n• JavaScript Frameworks\n• UI/UX Design\n• Cybersecurity\n\n💼 Information About:\n• Course details & duration\n• Enrollment process\n• Fees & payment plans\n• Placement assistance\n• Certification\n• Student reviews\n• Contact details\n\n💡 Try asking:\n\"Tell me about Python course\"\n\"How do I enroll?\"\n\"What are the fees?\"\n\"Do you provide placement?\"\n\nWhat would you like to know? 🤔";
+  };
+
+  const handleSendMessage = () => {
+    if (inputMessage.trim() === '') return;
+
+    // Add user message
+    const userMsg = {
+      text: inputMessage,
+      sender: 'user',
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+    };
+
+    setMessages(prev => [...prev, userMsg]);
+    setInputMessage('');
+    setIsTyping(true);
+
+    // Simulate bot typing and response
+    setTimeout(() => {
+      const botResponse = getBotResponse(inputMessage);
+      const botMsg = {
+        text: botResponse,
+        sender: 'bot',
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+      setMessages(prev => [...prev, botMsg]);
+      setIsTyping(false);
+    }, 1000);
+  };
+
+  const handleQuickReply = (reply) => {
+    setInputMessage(reply);
+    setTimeout(() => handleSendMessage(), 100);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
+  };
+
+  // Start a new chat
+  const startNewChat = () => {
+    setMessages([welcomeMessage]);
+    localStorage.removeItem('chatHistory');
+    setShowMenu(false);
+  };
+
+  // Clear all chat history
+  const clearHistory = () => {
+    if (window.confirm('Are you sure you want to clear all chat history?')) {
+      startNewChat();
+    }
+  };
+
+  return (
+    <>
+      {/* Floating Chat Button */}
+      <div 
+        className={`chatbot-toggle ${isOpen ? 'active' : ''}`}
+        onClick={() => setIsOpen(!isOpen)}
+        title="Chat with us"
+      >
+        {isOpen ? <FaTimes /> : <FaRobot />}
+        {!isOpen && (
+          <>
+            <span className="chat-pulse"></span>
+            <span className="chat-ring"></span>
+          </>
+        )}
+      </div>
+
+      {/* Chat Window */}
+      <div className={`chatbot-window ${isOpen ? 'open' : ''}`}>
+        {/* Chat Header */}
+        <div className="chatbot-header">
+          <div className="header-content">
+            <div className="bot-avatar">
+              <FaRobot />
+            </div>
+            <div className="bot-info">
+              <h4>Shanruck Assistant</h4>
+              <span className="status">
+                <span className="status-dot"></span> Online
+                {messages.length > 1 && (
+                  <span className="message-count">• {messages.length} messages</span>
+                )}
+              </span>
+            </div>
+          </div>
+          <div className="header-actions">
+            <button 
+              className="menu-btn" 
+              onClick={() => setShowMenu(!showMenu)}
+              title="Options"
+            >
+              <FaEllipsisV />
+            </button>
+            {showMenu && (
+              <div className="chat-menu">
+                <button className="menu-item" onClick={startNewChat}>
+                  <FaPlus /> New Chat
+                </button>
+                <button className="menu-item delete" onClick={clearHistory}>
+                  <FaTrash /> Clear History
+                </button>
+              </div>
+            )}
+            <button className="close-btn" onClick={() => setIsOpen(false)}>
+              <FaTimes />
+            </button>
+          </div>
+        </div>
+
+        {/* Chat Messages */}
+        <div className="chatbot-messages">
+          {messages.map((message, index) => (
+            <div key={index} className={`message ${message.sender}`}>
+              <div className="message-avatar">
+                {message.sender === 'bot' ? <FaRobot /> : <FaUser />}
+              </div>
+              <div className="message-content">
+                <div className="message-bubble">
+                  {message.text}
+                </div>
+                <div className="message-time">{message.time}</div>
+              </div>
+            </div>
+          ))}
+          
+          {isTyping && (
+            <div className="message bot">
+              <div className="message-avatar">
+                <FaRobot />
+              </div>
+              <div className="message-content">
+                <div className="typing-indicator">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          <div ref={messagesEndRef} />
+        </div>
+
+        {/* Quick Replies */}
+        {messages.length <= 3 && (
+          <div className="quick-replies">
+            {quickReplies.map((reply, index) => (
+              <button
+                key={index}
+                className="quick-reply-btn"
+                onClick={() => handleQuickReply(reply)}
+              >
+                {reply}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {/* Chat Input */}
+        <div className="chatbot-input">
+          <input
+            type="text"
+            placeholder="Type your message..."
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+            onKeyPress={handleKeyPress}
+          />
+          <button 
+            className="send-btn" 
+            onClick={handleSendMessage}
+            disabled={inputMessage.trim() === ''}
+          >
+            <FaPaperPlane />
+          </button>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Chatbot;
