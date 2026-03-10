@@ -73,7 +73,9 @@ const Contact = () => {
   const [errors, setErrors] = useState([]);
   const [touched, setTouched] = useState({});
   const [fieldErrors, setFieldErrors] = useState({ email: '', phone: '' });
-  const [countryCode, setCountryCode] = useState('+91');
+  const [countryCode, setCountryCode] = useState('India');
+
+  const selectedCountry = COUNTRY_CODES.find(c => c.country === countryCode) || COUNTRY_CODES[0];
 
   // Validation functions
   const validateEmail = (email) => {
@@ -159,7 +161,7 @@ const Contact = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData, phone: `${countryCode}${formData.phone}` }),
+        body: JSON.stringify({ ...formData, phone: `${selectedCountry.code}${formData.phone}` }),
       });
 
       const data = await response.json();
@@ -279,7 +281,7 @@ const Contact = () => {
                 <label htmlFor="phone">Phone Number *</label>
                 <div className={`phone-input-wrapper ${touched.phone && fieldErrors.phone ? 'input-error' : touched.phone && !fieldErrors.phone && formData.phone ? 'input-success' : ''}`}>
                   <div className="cc-display">
-                    <span className="cc-flag">{COUNTRY_CODES.find(c => c.code === countryCode)?.flag || '🌐'}</span>
+                    <span className="cc-flag">{selectedCountry.flag}</span>
                     <select
                       className="country-code-select"
                       value={countryCode}
@@ -288,12 +290,12 @@ const Contact = () => {
                       title="Select country code"
                     >
                       {COUNTRY_CODES.map((c, i) => (
-                        <option key={i} value={c.code}>
+                        <option key={i} value={c.country}>
                           {c.flag} {c.code} {c.country}
                         </option>
                       ))}
                     </select>
-                    <span className="cc-code">{countryCode}</span>
+                    <span className="cc-code">{selectedCountry.code}</span>
                   </div>
                   <input
                     type="tel"
