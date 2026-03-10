@@ -15,7 +15,8 @@ import {
   FaRocket,
   FaCube
 } from 'react-icons/fa';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.png';
+import logo1 from '../assets/logo1.png';
 import './Home.css';
 
 const Home = () => {
@@ -89,14 +90,14 @@ const Home = () => {
             
             {/* Center logo */}
             <div className="orbit-center">
-              <img src={logo} alt="Shanruck Technologies" className="center-logo" />
+              <img src={logo1} alt="Shanruck Technologies" className="center-logo" />
             </div>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="stats-section">
+      {/* <section className="stats-section">
         <div className="stats-container">
           <div className="stat-card">
             <FaUsers className="stat-icon" />
@@ -119,7 +120,7 @@ const Home = () => {
             <p>Certification</p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Highlight Section */}
       <section className="highlight-section">
@@ -228,7 +229,7 @@ const Home = () => {
             <div className="feature-icon">
               <FaCertificate />
             </div>
-            <h3>Official Certification</h3>
+            <h3>Certification</h3>
             <p>Receive recognized certificates upon successful completion of your program.</p>
           </div>
           

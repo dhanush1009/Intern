@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logo.png';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -25,7 +25,7 @@ const Navbar = () => {
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" onClick={closeMenu}>
           <img src={logo} alt="Shanruck Technologies" className="navbar-logo-img" />
-          Shanruck Technologies
+          {/* Shanruck Technologies */}
         </Link>
 
         <div className="menu-icon" onClick={toggleMenu}>

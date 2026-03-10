@@ -17,7 +17,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1600px;
   padding: 0 50px;
 }
 
@@ -34,8 +34,11 @@
 }
 
 .navbar-logo-img {
-  width: 40px;
-  height: 40px;
+  width: 250px;
+  height: 70px;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
 .navbar-logo:hover {

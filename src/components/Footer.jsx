@@ -24,13 +24,13 @@ const Footer = () => {
             <a href="#" className="social-icon" aria-label="Facebook">
               <FaFacebookF />
             </a>
-            <a href="#" className="social-icon" aria-label="Twitter">
+            {/* <a href="#" className="social-icon" aria-label="Twitter">
               <FaTwitter />
-            </a>
-            <a href="#" className="social-icon" aria-label="LinkedIn">
+            </a> */}
+            <a href="https://www.linkedin.com/company/shanruck-technologies/" className="social-icon" aria-label="LinkedIn">
               <FaLinkedinIn />
             </a>
-            <a href="#" className="social-icon" aria-label="Instagram">
+            <a href="https://www.instagram.com/shanruck_technologies?igsh=bW1wYng0MGFod28y" className="social-icon" aria-label="Instagram">
               <FaInstagram />
             </a>
           </div>
@@ -52,10 +52,10 @@ const Footer = () => {
           <ul>
             <li><Link to="/programs">Full Stack</Link></li>
             <li><Link to="/programs">Python</Link></li>
-            <li><Link to="/programs">WordPress</Link></li>
+            {/* <li><Link to="/programs">WordPress</Link></li> */}
             <li><Link to="/programs">Java</Link></li>
             <li><Link to="/programs">UI/UX</Link></li>
-            <li><Link to="/programs">Cybersecurity</Link></li>
+            <li><Link to="/programs">Others</Link></li>
           </ul>
         </div>
 
@@ -64,15 +64,15 @@ const Footer = () => {
           <div className="contact-info">
             <div className="contact-item">
               <FaMapMarkerAlt />
-              <p>123 Tech Street, Innovation Hub<br />Bangalore, Karnataka 560001</p>
+              <p>105 Anna Nagar, Vellakoil <br/> Tiruppur - 638111<br /></p>
             </div>
             <div className="contact-item">
               <FaPhone />
-              <p>+91 9876543210</p>
+              <p>+91 7200431181</p>
             </div>
             <div className="contact-item">
               <FaEnvelope />
-              <p>info@shanrucktech.com</p>
+              <p>info@shanrucktechnologies.in</p>
             </div>
           </div>
         </div>
