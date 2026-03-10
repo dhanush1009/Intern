@@ -20,26 +20,30 @@ const isEmailConfigured = !!(process.env.EMAIL_USER && process.env.EMAIL_PASS);
 
 // Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+  host: process.env.EMAIL_HOST || 'smtpout.secureserver.net',
   port: parseInt(process.env.EMAIL_PORT) || 587,
-  secure: false, // true for 465, false for other ports
+  secure: false, // use STARTTLS (TLS) on port 587; 465 requires SSL
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  // Additional options for GoDaddy/TLS
+  tls: {
+    rejectUnauthorized: false, // allow self-signed certs
+  }
 });
 
 // Verify transporter configuration
 if (isEmailConfigured) {
   transporter.verify((error, success) => {
     if (error) {
-      console.error('Email transporter verification failed:', error);
+      console.error('GoDaddy email transporter verification failed:', error);
     } else {
-      console.log('Email server is ready to send messages');
+      console.log('✅ GoDaddy email server is ready to send messages');
     }
   });
 } else {
-  console.log('⚠️  Email credentials not configured. Queries will be logged but not emailed.');
+  console.log('⚠️  GoDaddy email credentials not configured. Queries will be logged but not emailed.');
   console.log('   To enable email, create a .env file with EMAIL_USER and EMAIL_PASS');
 }
 

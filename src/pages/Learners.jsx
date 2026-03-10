@@ -1,11 +1,7 @@
-import { useState, useRef, useEffect } from 'react';
-import { FaStar, FaQuoteLeft, FaUserGraduate, FaChevronLeft, FaChevronRight, FaBriefcase, FaGraduationCap, FaRocket, FaHandshake } from 'react-icons/fa';
+import { FaStar, FaQuoteLeft, FaUserGraduate, FaBriefcase, FaGraduationCap, FaRocket, FaHandshake } from 'react-icons/fa';
 import './Learners.css';
 
 const Learners = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const carouselRef = useRef(null);
   
   const testimonials = [
     {
@@ -64,56 +60,6 @@ const Learners = () => {
     ));
   };
 
-  const scrollToSlide = (index) => {
-    setCurrentSlide(index);
-    if (carouselRef.current) {
-      const cardWidth = carouselRef.current.querySelector('.testimonial-card').offsetWidth + 30;
-      carouselRef.current.scrollTo({
-        left: cardWidth * index,
-        behavior: 'smooth'
-      });
-    }
-  };
-
-  const nextSlide = () => {
-    const newIndex = currentSlide < testimonials.length - 1 ? currentSlide + 1 : 0;
-    scrollToSlide(newIndex);
-  };
-
-  const prevSlide = () => {
-    const newIndex = currentSlide > 0 ? currentSlide - 1 : testimonials.length - 1;
-    scrollToSlide(newIndex);
-  };
-
-  const handleScroll = () => {
-    if (carouselRef.current) {
-      const scrollLeft = carouselRef.current.scrollLeft;
-      const cardWidth = carouselRef.current.querySelector('.testimonial-card').offsetWidth + 30;
-      const newIndex = Math.round(scrollLeft / cardWidth);
-      if (newIndex !== currentSlide) {
-        setCurrentSlide(newIndex);
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      setCurrentSlide(prev => {
-        const newIndex = prev < testimonials.length - 1 ? prev + 1 : 0;
-        if (carouselRef.current) {
-          const card = carouselRef.current.querySelector('.testimonial-card');
-          if (card) {
-            const cardWidth = card.offsetWidth + 30;
-            carouselRef.current.scrollTo({ left: cardWidth * newIndex, behavior: 'smooth' });
-          }
-        }
-        return newIndex;
-      });
-    }, 3500);
-    return () => clearInterval(timer);
-  }, [isPaused, testimonials.length]);
-
   return (
     <div className="learners">
       {/* Testimonials Section */}
@@ -125,33 +71,17 @@ const Learners = () => {
             <p>Real reviews from real students who achieved their career goals</p>
           </div>
           
-          <div className="carousel-wrapper">
-            <button className="carousel-btn prev-btn" onClick={prevSlide} aria-label="Previous">
-              <FaChevronLeft />
-            </button>
-            
-            <div 
-              className="testimonials-carousel" 
-              ref={carouselRef}
-              onScroll={handleScroll}
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              {testimonials.map((testimonial, index) => (
-                <div 
-                  key={testimonial.id} 
-                  className={`testimonial-card ${index === currentSlide ? 'active' : ''}`}
-                >
+          <div className="marquee-wrapper">
+            <div className="marquee-track">
+              {[...testimonials, ...testimonials].map((testimonial, index) => (
+                <div key={index} className="testimonial-card">
                   <div className="quote-icon">
                     <FaQuoteLeft />
                   </div>
-                  
                   <div className="testimonial-rating">
                     {renderStars(testimonial.rating)}
                   </div>
-
                   <p className="testimonial-text">"{testimonial.feedback}"</p>
-
                   <div className="testimonial-footer">
                     <div className="student-avatar">
                       <FaUserGraduate />
@@ -165,21 +95,6 @@ const Learners = () => {
                 </div>
               ))}
             </div>
-            
-            <button className="carousel-btn next-btn" onClick={nextSlide} aria-label="Next">
-              <FaChevronRight />
-            </button>
-          </div>
-          
-          <div className="carousel-dots">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                className={`dot ${index === currentSlide ? 'active' : ''}`}
-                onClick={() => scrollToSlide(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
           </div>
         </div>
       </section>

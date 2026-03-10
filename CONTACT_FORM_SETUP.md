@@ -1,6 +1,6 @@
 # Contact Form Email Setup Guide
 
-## Complete Setup Instructions
+## Complete Setup Instructions for GoDaddy Email
 
 ### Step 1: Install Backend Dependencies
 
@@ -18,46 +18,60 @@ This will install:
 - dotenv (environment variables)
 - body-parser (parse request body)
 
-### Step 2: Configure Email Settings
+### Step 2: Configure GoDaddy Email Settings
 
-Open `server/.env` file and update with your email credentials:
+Since your domain is hosted with GoDaddy, use these SMTP settings in `server/.env`:
 
 ```env
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-specific-password
-EMAIL_TO=info@shanrucktech.com
+# GoDaddy Email Configuration
+EMAIL_HOST=smtpout.secureserver.net
+EMAIL_PORT=465
+EMAIL_USER=info@shanrucktechnologies.in
+EMAIL_PASS=your-godaddy-email-password
+EMAIL_TO=info@shanrucktechnologies.in
+
+# Server Configuration
 PORT=5000
 ```
 
-### Step 3: Gmail Setup (If using Gmail)
+### GoDaddy Email Setup Steps:
 
-**Important:** You need an App Password, not your regular Gmail password.
+1. **Log into your GoDaddy account**
+2. **Access your email**: Go to https://email.office365.com or your GoDaddy email portal
+3. **Get your password**: Use the password you use to log into your GoDaddy webmail
+4. **Update .env**: Replace `your-godaddy-email-password` with your actual password
 
-1. Go to your Google Account: https://myaccount.google.com/
-2. Click on "Security" in the left sidebar
-3. Enable "2-Step Verification" if not already enabled
-4. After enabling 2FA, go back to Security
-5. Scroll to "Signing in to Google"
-6. Click on "App passwords"
-7. Select "Mail" and "Other (Custom name)"
-8. Enter "Shanruck Website" as the name
-9. Click "Generate"
-10. Copy the 16-character password
-11. Paste it in the `.env` file as `EMAIL_PASS`
+**Important Notes:**
+- Use your full email address as EMAIL_USER
+- Use your regular GoDaddy email password (not an app password)
+- Port 465 uses SSL encryption for secure connection
+- If port 465 doesn't work, try port 587 with `secure: false` in server.js
 
-**Example:**
+### Step 3: Test Email Configuration
+
+Test your GoDaddy email setup before starting the server:
+
+```bash
+cd server
+node test-email.js
+```
+
+This will verify your SMTP configuration and send a test email to info@shanrucktechnologies.in.
+
+### Step 4: Alternative Email Providers
+
+#### Gmail Setup (If you prefer Gmail instead)
 ```env
 EMAIL_HOST=smtp.gmail.com
 EMAIL_PORT=587
 EMAIL_USER=your.email@gmail.com
-EMAIL_PASS=abcd efgh ijkl mnop
-EMAIL_TO=info@shanrucktech.com
-PORT=5000
+EMAIL_PASS=your-16-char-app-password
 ```
 
-### Step 4: Other Email Providers
+**For Gmail, you need an App Password:**
+1. Enable 2-Factor Authentication on your Google account
+2. Generate an App Password at https://myaccount.google.com/apppasswords
+3. Use the 16-character password in EMAIL_PASS
 
 #### Outlook/Hotmail
 ```env
