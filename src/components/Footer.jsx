@@ -64,7 +64,14 @@ const Footer = () => {
           <div className="contact-info">
             <div className="contact-item">
               <FaMapMarkerAlt />
-              <p>105 Anna Nagar, Vellakoil <br/> Tiruppur - 638111<br /></p>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=105+Anna+Nagar+Vellakoil+Tiruppur+638111"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: 'inherit', textDecoration: 'none' }}
+              >
+                <p>105 Anna Nagar, Vellakoil <br/> Tiruppur - 638111<br /></p>
+              </a>
             </div>
             <div className="contact-item">
               <FaPhone />

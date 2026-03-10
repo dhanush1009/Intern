@@ -295,7 +295,7 @@ const Contact = () => {
                 </div>
                 <div className="info-card-content">
                   <h3>Our Location</h3>
-                  <p>123 Tech Street, Innovation Hub<br />Bangalore, Karnataka 560001</p>
+                  <p>105 Anna Nagar, Vellakoil<br />Tiruppur - 638111</p>
                 </div>
               </div>
 
@@ -305,7 +305,7 @@ const Contact = () => {
                 </div>
                 <div className="info-card-content">
                   <h3>Phone Number</h3>
-                  <p>+91 9876543210<br />+91 9876543211</p>
+                  <p>+91 7200431181</p>
                 </div>
               </div>
 
@@ -315,7 +315,7 @@ const Contact = () => {
                 </div>
                 <div className="info-card-content">
                   <h3>Email Address</h3>
-                  <p>info@shanrucktech.com<br />support@shanrucktech.com</p>
+                  <p>info@shanrucktechnologies.in</p>
                 </div>
               </div>
 
@@ -357,14 +357,14 @@ const Contact = () => {
         <h2>Find Us Here</h2>
         <div className="map-container">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.8476924576384!2d77.59369431482161!3d12.971598890867445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1670c9b44e6d%3A0xf8dfc3e8517e4fe0!2sBengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin"
+            src={`https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&q=105+Anna+Nagar,+Vellakoil,+Tiruppur,+Tamil+Nadu+638111,+India&zoom=17`}
             width="100%"
             height="450"
             style={{ border: 0 }}
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            title="Shanruck Technologies Location"
+            title="Shanruck Technologies Location - 105 Anna Nagar, Vellakoil, Tiruppur"
           ></iframe>
         </div>
       </section>
