@@ -150,6 +150,9 @@ const Contact = () => {
     const validationErrors = validateForm();
     if (validationErrors.length > 0) {
       setErrors(validationErrors);
+      setTimeout(() => {
+        setErrors([]);
+      }, 5000);
       return;
     }
 
@@ -186,10 +189,12 @@ const Contact = () => {
         }, 8000);
       } else {
         setErrors(data.errors || ['Failed to send enquiry. Please try again.']);
+        setTimeout(() => { setErrors([]); }, 5000);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       setErrors(['Network error. Please check if the server is running and try again.']);
+      setTimeout(() => { setErrors([]); }, 5000);
     } finally {
       setLoading(false);
     }
@@ -228,7 +233,6 @@ const Contact = () => {
         <div className="contact-container">
           {/* Section Header */}
           <div className="section-header">
-            <div className="header-badge">Contact Us</div>
             <h1>Let's Connect</h1>
             <p>Ready to start your tech journey? Reach out to us and we'll help you find the perfect program</p>
           </div>
@@ -238,7 +242,6 @@ const Contact = () => {
             <div className="contact-form-wrapper">
               <div className="form-header">
                 <h2>Get In Touch With Us</h2>
-                <p>We'd love to hear from you. Submit your enquiry and our team will respond within 24 hours.</p>
               </div>
             
             <form className="contact-form" onSubmit={handleSubmit}>
@@ -370,7 +373,6 @@ const Contact = () => {
           <div className="contact-info-wrapper">
             <div className="info-header">
               <h2>Contact Information</h2>
-              <p>Get in touch with us through any of these channels</p>
             </div>
 
             <div className="contact-info-cards">
