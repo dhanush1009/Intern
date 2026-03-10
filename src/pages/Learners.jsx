@@ -10,7 +10,7 @@ const Learners = () => {
   const testimonials = [
     {
       id: 1,
-      name: 'Priya Sharma',
+      name: 'Abinaya',
       qualification: 'Full Stack Web Developer',
       feedback: 'Shanruck Technologies transformed my career! The hands-on approach and expert mentorship helped me land my dream job. The instructors are incredibly supportive and the curriculum is very practical.',
       rating: 5,
@@ -18,7 +18,7 @@ const Learners = () => {
     },
     {
       id: 2,
-      name: 'Rahul Kumar',
+      name: 'Arun',
       qualification: 'Python Developer',
       feedback: 'Best decision I ever made! The project-based learning approach made complex concepts easy to understand. I went from zero coding knowledge to building real applications in just 4 months.',
       rating: 5,
@@ -26,7 +26,7 @@ const Learners = () => {
     },
     {
       id: 3,
-      name: 'Sneha Patel',
+      name: 'Anu',
       qualification: 'UI/UX Designer',
       feedback: 'The UI/UX course exceeded my expectations. I learned industry-standard tools and design principles. The portfolio projects I built during the course helped me get hired immediately after graduation.',
       rating: 5,
@@ -34,7 +34,7 @@ const Learners = () => {
     },
     {
       id: 4,
-      name: 'Arjun Reddy',
+      name: 'Karthik',
       qualification: 'Java Developer',
       feedback: 'Excellent training program! The instructors have real industry experience and they share practical knowledge. The placement support team was amazing and helped me prepare for interviews.',
       rating: 5,
@@ -42,7 +42,7 @@ const Learners = () => {
     },
     {
       id: 5,
-      name: 'Ananya Singh',
+      name: 'Divya',
       qualification: 'React Developer',
       feedback: 'I loved the React course! The small batch size meant I got personalized attention. The projects were challenging but rewarding, and I feel confident in my ability to build modern web applications.',
       rating: 5,
@@ -50,7 +50,7 @@ const Learners = () => {
     },
     {
       id: 6,
-      name: 'Vikram Malhotra',
+      name: 'Surya',
       qualification: 'Cybersecurity Analyst',
       feedback: 'The cybersecurity program is comprehensive and well-structured. I gained both theoretical knowledge and practical skills. The certification helped me switch careers into the cybersecurity field.',
       rating: 5,
@@ -110,7 +110,7 @@ const Learners = () => {
         }
         return newIndex;
       });
-    }, 3500);
+    }, 2500);
     return () => clearInterval(timer);
   }, [isPaused, testimonials.length]);
 
@@ -120,7 +120,6 @@ const Learners = () => {
       <section className="testimonials-section">
         <div className="testimonials-container">
           <div className="section-header">
-            <div className="header-badge">Testimonials</div>
             <h2>Student Success Stories</h2>
             <p>Real reviews from real students who achieved their career goals</p>
           </div>
@@ -144,10 +143,6 @@ const Learners = () => {
                 >
                   <div className="quote-icon">
                     <FaQuoteLeft />
-                  </div>
-                  
-                  <div className="testimonial-rating">
-                    {renderStars(testimonial.rating)}
                   </div>
 
                   <p className="testimonial-text">"{testimonial.feedback}"</p>

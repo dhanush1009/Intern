@@ -22,39 +22,51 @@
 /* Hero Section */
 .program-hero {
   background: white;
-  padding: 80px 50px 60px;
+  padding: 20px 50px 60px;
   border-top: 5px solid #e83570;
+  position: relative;
 }
 
 .hero-content {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0;
 }
 
 .back-button {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background: transparent;
-  border: 2px solid #e2e8f0;
+  gap: 6px;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid #e2e8f0;
   border-radius: 8px;
-  color: #64748b;
-  font-size: 1rem;
-  font-weight: 500;
+  color: #475569;
+  font-size: 0.875rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-bottom: 30px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 25px;
+  width: fit-content;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .back-button:hover {
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #e83570 0%, #f472b6 100%);
   border-color: #e83570;
-  color: #e83570;
+  color: white;
+  transform: translateX(-3px);
+  box-shadow: 0 4px 12px rgba(232, 53, 112, 0.25);
+}
+
+.back-button:active {
+  transform: translateX(-3px) scale(0.98);
+  box-shadow: 0 2px 8px rgba(232, 53, 112, 0.3);
 }
 
 .hero-header {
   display: flex;
+  flex-direction: row;
   gap: 30px;
   align-items: flex-start;
   margin-bottom: 40px;
@@ -76,23 +88,33 @@
   color: white;
 }
 
+.hero-text {
+  flex: 1;
+  text-align: center;
+}
+
 .hero-text h1 {
   font-size: 2.8rem;
   color: #1e293b;
   margin-bottom: 15px;
   font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .hero-text p {
   font-size: 1.15rem;
   line-height: 1.8;
   color: #64748b;
+  text-align: center;
 }
 
 .program-meta {
   display: flex;
   gap: 40px;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .meta-item {
@@ -111,7 +133,7 @@
 
 /* Modules Section */
 .modules-section {
-  padding: 80px 50px;
+  padding: 20px 50px 80px;
 }
 
 .modules-container {

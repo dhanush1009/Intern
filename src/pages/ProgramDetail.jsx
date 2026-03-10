@@ -30,15 +30,13 @@ const ProgramDetail = () => {
   const programsData = {
     1: {
       icon: <FaCode />,
-      title: 'Full Stack Web Development',
-      description: 'The plan includes learning front-end technologies, back-end technologies, databases, version control, and deployment strategies. Each week focuses on specific topics with hands-on projects to reinforce learning.',
       duration: '20 Weeks',
       level: 'Beginner to Advanced',
       color: '#667eea',
       modules: [
         {
           id: 1,
-          title: 'Week 1: Introduction to Web Development',
+          title: 'Module 1: Introduction to Web Development',
           topics: [
             'Understanding the web: browsers, servers, and HTTP',
             'Basic HTML: structure, elements, and attributes',
@@ -50,7 +48,7 @@ const ProgramDetail = () => {
         },
         {
           id: 2,
-          title: 'Week 2: Advanced HTML and CSS',
+          title: 'Module 2: Advanced HTML and CSS',
           topics: [
             'Semantic HTML',
             'CSS Flexbox and Grid',
@@ -62,7 +60,7 @@ const ProgramDetail = () => {
         },
         {
           id: 3,
-          title: 'Week 3: JavaScript Fundamentals',
+          title: 'Module 3: JavaScript Fundamentals',
           topics: [
             'Basic syntax and variables',
             'Data types and operators',
@@ -74,7 +72,7 @@ const ProgramDetail = () => {
         },
         {
           id: 4,
-          title: 'Week 4: JavaScript Functions and Objects',
+          title: 'Module 4: JavaScript Functions and Objects',
           topics: [
             'Functions and scope',
             'Objects and arrays',
@@ -86,7 +84,7 @@ const ProgramDetail = () => {
         },
         {
           id: 5,
-          title: 'Week 5: Advanced JavaScript',
+          title: 'Module 5: Advanced JavaScript',
           topics: [
             'Modern JavaScript (ES6+): let, const, arrow functions',
             'Template literals, destructuring, spread/rest operators',
@@ -98,7 +96,7 @@ const ProgramDetail = () => {
         },
         {
           id: 6,
-          title: 'Week 6: Asynchronous JavaScript',
+          title: 'Module 6: Asynchronous JavaScript',
           topics: [
             'Promises and async/await',
             'Fetch API and AJAX'
@@ -109,7 +107,7 @@ const ProgramDetail = () => {
         },
         {
           id: 7,
-          title: 'Week 7: Introduction to React JS',
+          title: 'Module 7: Introduction to React JS',
           topics: [
             'Setting up a React environment',
             'JSX, components, props, and state',
@@ -121,7 +119,7 @@ const ProgramDetail = () => {
         },
         {
           id: 8,
-          title: 'Week 8: React Components and State Management',
+          title: 'Module 8: React Components and State Management',
           topics: [
             'React component lifecycle',
             'Event handling in React',
@@ -133,7 +131,7 @@ const ProgramDetail = () => {
         },
         {
           id: 9,
-          title: 'Week 9: Advanced React Concepts',
+          title: 'Module 9: Advanced React Concepts',
           topics: [
             'Context API for state management',
             'React Router for navigation',
@@ -145,7 +143,7 @@ const ProgramDetail = () => {
         },
         {
           id: 10,
-          title: 'Week 10: Backend Development with Node.js',
+          title: 'Module 10: Backend Development with Node.js',
           topics: [
             'Introduction to Node.js and npm',
             'Creating a basic server with Node.js',
@@ -157,7 +155,7 @@ const ProgramDetail = () => {
         },
         {
           id: 11,
-          title: 'Week 11: Express.js and Middleware',
+          title: 'Module 11: Express.js and Middleware',
           topics: [
             'Routing and middleware in Express.js',
             'Handling HTTP requests and responses',
@@ -169,7 +167,7 @@ const ProgramDetail = () => {
         },
         {
           id: 12,
-          title: 'Week 12: Database Integration with MongoDB',
+          title: 'Module 12: Database Integration with MongoDB',
           topics: [
             'Introduction to MongoDB and Mongoose',
             'CRUD operations with Mongoose',
@@ -181,7 +179,7 @@ const ProgramDetail = () => {
         },
         {
           id: 13,
-          title: 'Week 13: Authentication and Authorization',
+          title: 'Module 13: Authentication and Authorization',
           topics: [
             'User authentication with JWT and bcrypt',
             'Role-based access control'
@@ -192,7 +190,7 @@ const ProgramDetail = () => {
         },
         {
           id: 14,
-          title: 'Week 14: Advanced React and Backend Integration',
+          title: 'Module 14: Advanced React and Backend Integration',
           topics: [
             'Connecting React frontend with Express backend',
             'Handling CORS and API calls',
@@ -204,7 +202,7 @@ const ProgramDetail = () => {
         },
         {
           id: 15,
-          title: 'Week 15: Deployment and DevOps Basics',
+          title: 'Module 15: Deployment and DevOps Basics',
           topics: [
             'Version control with Git and GitHub',
             'Deploying applications using Heroku, Vercel, or Netlify',
@@ -216,7 +214,7 @@ const ProgramDetail = () => {
         },
         {
           id: 16,
-          title: 'Week 16: Capstone Project – Planning and Design',
+          title: 'Module 16: Capstone Project – Planning and Design',
           topics: [
             'Project planning and requirements gathering',
             'Application architecture design',
@@ -228,7 +226,7 @@ const ProgramDetail = () => {
         },
         {
           id: 17,
-          title: 'Weeks 17-19: Capstone Project – Development',
+          title: 'Module 17: Capstone Project – Development',
           topics: [
             'Implementing frontend UI features',
             'Developing backend APIs and database interactions',
@@ -240,7 +238,7 @@ const ProgramDetail = () => {
         },
         {
           id: 18,
-          title: 'Week 20: Capstone Project – Finalization and Presentation',
+          title: 'Module 18: Capstone Project – Finalization and Presentation',
           topics: [
             'Testing and debugging',
             'Preparing for deployment',
@@ -369,7 +367,7 @@ const ProgramDetail = () => {
       modules: [
         {
           id: 1,
-          title: 'Week 1: WordPress Basics',
+          title: 'Module 1: WordPress Basics',
           topics: [
             'Introduction to WordPress',
             'Posts vs Pages',
@@ -383,7 +381,7 @@ const ProgramDetail = () => {
         },
         {
           id: 2,
-          title: 'Week 2: Themes and Customization',
+          title: 'Module 2: Themes and Customization',
           topics: [
             'Understanding WordPress themes',
             'Installing and activating themes',
@@ -396,7 +394,7 @@ const ProgramDetail = () => {
         },
         {
           id: 3,
-          title: 'Week 3: Plugins',
+          title: 'Module 3: Plugins',
           topics: [
             'What are plugins',
             'Installing and managing plugins',
@@ -409,7 +407,7 @@ const ProgramDetail = () => {
         },
         {
           id: 4,
-          title: 'Week 4: WordPress Design',
+          title: 'Module 4: WordPress Design',
           topics: [
             'Using Elementor page builder',
             'Designing responsive pages',
@@ -422,7 +420,7 @@ const ProgramDetail = () => {
         },
         {
           id: 5,
-          title: 'Week 5: WordPress Development Basics',
+          title: 'Module 5: WordPress Development Basics',
           topics: [
             'Introduction to HTML, CSS, and PHP in WordPress',
             'WordPress file structure',
@@ -435,7 +433,7 @@ const ProgramDetail = () => {
         },
         {
           id: 6,
-          title: 'Week 6: Database and Backend',
+          title: 'Module 6: Database and Backend',
           topics: [
             'WordPress database structure',
             'Working with MySQL',
@@ -448,7 +446,7 @@ const ProgramDetail = () => {
         },
         {
           id: 7,
-          title: 'Week 7: Security and Performance',
+          title: 'Module 7: Security and Performance',
           topics: [
             'WordPress security best practices',
             'SSL certificates',
@@ -461,7 +459,7 @@ const ProgramDetail = () => {
         },
         {
           id: 8,
-          title: 'Week 8: E-Commerce with WordPress',
+          title: 'Module 8: E-Commerce with WordPress',
           topics: [
             'Introduction to WooCommerce',
             'Creating products',
@@ -474,7 +472,7 @@ const ProgramDetail = () => {
         },
         {
           id: 9,
-          title: 'Week 9: Final WordPress Project',
+          title: 'Module 9: Final WordPress Project',
           topics: [
             'Custom plugin development',
             'WordPress API integration',
@@ -497,7 +495,7 @@ const ProgramDetail = () => {
       modules: [
         {
           id: 1,
-          title: 'Week 1: Java Basics',
+          title: 'Module 1: Java Basics',
           topics: [
             'Introduction to Java',
             'Variables and Data Types',
@@ -511,7 +509,7 @@ const ProgramDetail = () => {
         },
         {
           id: 2,
-          title: 'Week 2: Control Statements',
+          title: 'Module 2: Control Statements',
           topics: [
             'If, If-Else, Nested If',
             'Switch statement',
@@ -524,7 +522,7 @@ const ProgramDetail = () => {
         },
         {
           id: 3,
-          title: 'Week 3: Arrays',
+          title: 'Module 3: Arrays',
           topics: [
             'One dimensional arrays',
             'Two dimensional arrays',
@@ -537,7 +535,7 @@ const ProgramDetail = () => {
         },
         {
           id: 4,
-          title: 'Week 4: Object Oriented Programming (OOP)',
+          title: 'Module 4: Object Oriented Programming (OOP)',
           topics: [
             'Classes and Objects',
             'Constructors',
@@ -550,7 +548,7 @@ const ProgramDetail = () => {
         },
         {
           id: 5,
-          title: 'Week 5: Inheritance and Polymorphism',
+          title: 'Module 5: Inheritance and Polymorphism',
           topics: [
             'Inheritance types',
             'Method overriding',
@@ -563,7 +561,7 @@ const ProgramDetail = () => {
         },
         {
           id: 6,
-          title: 'Week 6: Abstraction and Interfaces',
+          title: 'Module 6: Abstraction and Interfaces',
           topics: [
             'Abstract classes',
             'Interfaces',
@@ -576,7 +574,7 @@ const ProgramDetail = () => {
         },
         {
           id: 7,
-          title: 'Week 7: Exception Handling',
+          title: 'Module 7: Exception Handling',
           topics: [
             'Types of exceptions',
             'Try, Catch, Finally',
@@ -589,7 +587,7 @@ const ProgramDetail = () => {
         },
         {
           id: 8,
-          title: 'Week 8: Java Collections',
+          title: 'Module 8: Java Collections',
           topics: [
             'List (ArrayList, LinkedList)',
             'Set (HashSet)',
@@ -602,7 +600,7 @@ const ProgramDetail = () => {
         },
         {
           id: 9,
-          title: 'Week 9: Final Java Project',
+          title: 'Module 9: Final Java Project',
           topics: [
             'Multi-threading concepts',
             'Database integration using JDBC',
@@ -625,7 +623,7 @@ const ProgramDetail = () => {
       modules: [
         {
           id: 1,
-          title: 'Week 1: React Fundamentals',
+          title: 'Module 1: React Fundamentals',
           topics: [
             'Introduction to React',
             'JSX syntax and rendering elements',
@@ -638,7 +636,7 @@ const ProgramDetail = () => {
         },
         {
           id: 2,
-          title: 'Week 2: React State and Events',
+          title: 'Module 2: React State and Events',
           topics: [
             'State management in React',
             'Event handling in React',
@@ -651,7 +649,7 @@ const ProgramDetail = () => {
         },
         {
           id: 3,
-          title: 'Week 3: React Hooks',
+          title: 'Module 3: React Hooks',
           topics: [
             'Introduction to React Hooks',
             'useState and useEffect',
@@ -664,7 +662,7 @@ const ProgramDetail = () => {
         },
         {
           id: 4,
-          title: 'Week 4: React Routing and API Integration',
+          title: 'Module 4: React Routing and API Integration',
           topics: [
             'React Router for navigation',
             'API integration using Axios or Fetch',
@@ -676,7 +674,7 @@ const ProgramDetail = () => {
         },
         {
           id: 5,
-          title: 'Week 5: Advanced React Concepts',
+          title: 'Module 5: Advanced React Concepts',
           topics: [
             'Context API for global state',
             'Performance optimization',
@@ -688,7 +686,7 @@ const ProgramDetail = () => {
         },
         {
           id: 6,
-          title: 'Week 6: Introduction to Angular',
+          title: 'Module 6: Introduction to Angular',
           topics: [
             'Overview of Angular framework',
             'Angular CLI and project structure',
@@ -701,7 +699,7 @@ const ProgramDetail = () => {
         },
         {
           id: 7,
-          title: 'Week 7: Angular Directives and Services',
+          title: 'Module 7: Angular Directives and Services',
           topics: [
             'Structural directives (ngIf, ngFor)',
             'Attribute directives',
@@ -713,7 +711,7 @@ const ProgramDetail = () => {
         },
         {
           id: 8,
-          title: 'Week 8: Angular Forms and Validation',
+          title: 'Module 8: Angular Forms and Validation',
           topics: [
             'Template-driven forms',
             'Reactive forms',
@@ -725,7 +723,7 @@ const ProgramDetail = () => {
         },
         {
           id: 9,
-          title: 'Week 9: Angular Routing and HTTP',
+          title: 'Module 9: Angular Routing and HTTP',
           topics: [
             'Angular routing and navigation',
             'HTTP client for API requests',
@@ -737,7 +735,7 @@ const ProgramDetail = () => {
         },
         {
           id: 10,
-          title: 'Week 10: Advanced Angular Features',
+          title: 'Module 10: Advanced Angular Features',
           topics: [
             'Angular modules',
             'Lazy loading modules',
@@ -749,7 +747,7 @@ const ProgramDetail = () => {
         },
         {
           id: 11,
-          title: 'Week 11: Framework Integration and Final Project',
+          title: 'Module 11: Framework Integration and Final Project',
           topics: [
             'Testing and debugging',
             'Preparing for deployment',
@@ -771,7 +769,7 @@ const ProgramDetail = () => {
       modules: [
         {
           id: 1,
-          title: 'Week 1: Design Principles',
+          title: 'Module 1: Design Principles',
           topics: [
             'Introduction to UI/UX',
             'Difference between UI and UX',
@@ -786,7 +784,7 @@ const ProgramDetail = () => {
         },
         {
           id: 2,
-          title: 'Week 2: User Research',
+          title: 'Module 2: User Research',
           topics: [
             'Understanding users',
             'User personas',
@@ -799,7 +797,7 @@ const ProgramDetail = () => {
         },
         {
           id: 3,
-          title: 'Week 3: Wireframing',
+          title: 'Module 3: Wireframing',
           topics: [
             'What is wireframing',
             'Low fidelity wireframes',
@@ -812,7 +810,7 @@ const ProgramDetail = () => {
         },
         {
           id: 4,
-          title: 'Week 4: Prototyping',
+          title: 'Module 4: Prototyping',
           topics: [
             'Introduction to prototyping',
             'Interactive prototypes',
@@ -825,7 +823,7 @@ const ProgramDetail = () => {
         },
         {
           id: 5,
-          title: 'Week 5: UI Design Tools',
+          title: 'Module 5: UI Design Tools',
           topics: [
             'Design tools overview',
             'Working with components',
@@ -838,7 +836,7 @@ const ProgramDetail = () => {
         },
         {
           id: 6,
-          title: 'Week 6: Mobile App Design',
+          title: 'Module 6: Mobile App Design',
           topics: [
             'Mobile UI guidelines',
             'Responsive design',
@@ -851,7 +849,7 @@ const ProgramDetail = () => {
         },
         {
           id: 7,
-          title: 'Week 7: Web UI Design',
+          title: 'Module 7: Web UI Design',
           topics: [
             'Web layout structures',
             'Responsive web design',
@@ -864,7 +862,7 @@ const ProgramDetail = () => {
         },
         {
           id: 8,
-          title: 'Week 8: Usability Testing',
+          title: 'Module 8: Usability Testing',
           topics: [
             'What is usability testing',
             'Gathering user feedback',
@@ -877,7 +875,7 @@ const ProgramDetail = () => {
         },
         {
           id: 9,
-          title: 'Week 9: Final UI/UX Project',
+          title: 'Module 9: Final UI/UX Project',
           topics: [
             'User experience improvement techniques',
             'Interface consistency and design systems',
@@ -900,7 +898,7 @@ const ProgramDetail = () => {
       modules: [
         {
           id: 1,
-          title: 'Week 1: Introduction to Cybersecurity',
+          title: 'Module 1: Introduction to Cybersecurity',
           topics: [
             'Introduction of Cybersecurity',
             'Types of Cyber Attacks (Malware, Phishing, Ransomware)',
@@ -913,7 +911,7 @@ const ProgramDetail = () => {
         },
         {
           id: 2,
-          title: 'Week 2: Networking Fundamentals',
+          title: 'Module 2: Networking Fundamentals',
           topics: [
             'Computer Networks basics',
             'IP Address, DNS, DHCP',
@@ -926,7 +924,7 @@ const ProgramDetail = () => {
         },
         {
           id: 3,
-          title: 'Week 3: Operating System Security',
+          title: 'Module 3: Operating System Security',
           topics: [
             'Linux and Windows basics',
             'File permissions and user management',
@@ -939,7 +937,7 @@ const ProgramDetail = () => {
         },
         {
           id: 4,
-          title: 'Week 4: Cryptography Basics',
+          title: 'Module 4: Cryptography Basics',
           topics: [
             'Encryption and Decryption',
             'Symmetric vs Asymmetric Encryption',
@@ -952,7 +950,7 @@ const ProgramDetail = () => {
         },
         {
           id: 5,
-          title: 'Week 5: Ethical Hacking Fundamentals',
+          title: 'Module 5: Ethical Hacking Fundamentals',
           topics: [
             'What is Ethical Hacking',
             'Types of Hackers',
@@ -965,7 +963,7 @@ const ProgramDetail = () => {
         },
         {
           id: 6,
-          title: 'Week 6: Web Security',
+          title: 'Module 6: Web Security',
           topics: [
             'Web application vulnerabilities',
             'SQL Injection',
@@ -978,7 +976,7 @@ const ProgramDetail = () => {
         },
         {
           id: 7,
-          title: 'Week 7: Security Tools',
+          title: 'Module 7: Security Tools',
           topics: [
             'Kali Linux tools',
             'Nmap',
@@ -991,7 +989,7 @@ const ProgramDetail = () => {
         },
         {
           id: 8,
-          title: 'Week 8: Penetration Testing Basics',
+          title: 'Module 8: Penetration Testing Basics',
           topics: [
             'Penetration testing process',
             'Vulnerability scanning',
@@ -1004,7 +1002,7 @@ const ProgramDetail = () => {
         },
         {
           id: 9,
-          title: 'Week 9: Cybersecurity Defense',
+          title: 'Module 9: Cybersecurity Defense',
           topics: [
             'Firewalls and IDS/IPS',
             'Antivirus and endpoint security',
@@ -1017,7 +1015,7 @@ const ProgramDetail = () => {
         },
         {
           id: 10,
-          title: 'Week 10: Final Cybersecurity Project',
+          title: 'Module 10: Final Cybersecurity Project',
           topics: [
             'Network vulnerability assessment',
             'Penetration testing techniques',
@@ -1049,43 +1047,12 @@ const ProgramDetail = () => {
 
   return (
     <div className="program-detail">
-      {/* Hero Section */}
-      <section className="program-hero" style={{ borderTopColor: program.color }}>
-        <div className="hero-content">
-          <button onClick={() => navigate('/programs')} className="back-button">
-            <FaArrowLeft /> Back to Programs
-          </button>
-          
-          <div className="hero-header">
-            <div className="hero-icon" style={{ background: program.color }}>
-              {program.icon}
-            </div>
-            <div className="hero-text">
-              <h1>{program.title}</h1>
-              <p>{program.description}</p>
-            </div>
-          </div>
-
-          <div className="program-meta">
-            <div className="meta-item">
-              <FaClock />
-              <span>{program.duration}</span>
-            </div>
-            <div className="meta-item">
-              <FaBook />
-              <span>{program.level}</span>
-            </div>
-            <div className="meta-item">
-              <FaLaptopCode />
-              <span>{program.modules.length} Modules</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Course Modules Section */}
       <section className="modules-section">
         <div className="modules-container">
+          <button onClick={() => navigate('/programs')} className="back-button">
+            <FaArrowLeft /> Back
+          </button>
           <h2>Course Curriculum</h2>
           <p className="modules-subtitle">Comprehensive learning path designed to take you from basics to expert level</p>
           
@@ -1175,7 +1142,7 @@ const ProgramDetail = () => {
           <div className="program-cta">
             <h3>Ready to Start Your Learning Journey?</h3>
             <p>Join thousands of students who have transformed their careers with our programs</p>
-            <Link to="/contact" className="enroll-btn" style={{ background: program.color }}>
+            <Link to="/contact" className="enroll-btn" style={{ background: program.color }} onClick={() => window.scrollTo(0, 0)}>
               Enquiry →
             </Link>
           </div>
@@ -1186,3 +1153,4 @@ const ProgramDetail = () => {
 };
 
 export default ProgramDetail;
+

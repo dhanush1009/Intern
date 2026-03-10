@@ -102,14 +102,6 @@ const Programs = () => {
                 </div>
                 <h3>{program.title}</h3>
                 <p className="program-description">{program.description}</p>
-                
-                <div className="program-info">
-                  <div className="info-item">
-                    <FaClock />
-                    <span>{program.duration}</span>
-                  </div>
-                  <div className="program-level">{program.level}</div>
-                </div>
 
                 <Link to={`/program/${program.id}`} className="learn-more-btn">
                   Learn More <FaArrowRight />
@@ -167,7 +159,7 @@ const Programs = () => {
         <div className="cta-content">
           <h2>Ready to Start Your Learning Journey?</h2>
           <p>Join thousands of students who have transformed their careers with us</p>
-          <Link to="/contact" className="cta-button">
+          <Link to="/contact" className="cta-button" onClick={() => window.scrollTo(0, 0)}>
             Enquiry <FaArrowRight />
           </Link>
         </div>
