@@ -85,29 +85,52 @@ A professional training institute website built with React, featuring a fully fu
 
 ## 📧 Email Configuration
 
-### Gmail Setup (Recommended)
+### GoDaddy Email Setup (Required)
+
+Since your domain is hosted with GoDaddy, use these SMTP settings:
+
+1. **Get your GoDaddy email password**:
+   - Log into your GoDaddy account
+   - Access email at https://email.office365.com
+   - Use your regular email password (not an app password)
+
+2. **Configure `server/.env`**:
+   ```env
+   # GoDaddy Email Configuration
+   EMAIL_HOST=smtpout.secureserver.net
+   EMAIL_PORT=465
+   EMAIL_USER=info@shanrucktechnologies.in
+   EMAIL_PASS=your-godaddy-email-password
+   EMAIL_TO=info@shanrucktechnologies.in
+
+   # Server Configuration
+   PORT=5000
+   ```
+
+3. **Test the configuration**:
+   ```bash
+   cd server
+   node test-email.js
+   ```
+
+### Alternative: Gmail Setup
+
+If you prefer to use Gmail instead:
 
 1. Enable 2-Factor Authentication on your Google account
-2. Generate an App Password:
-   - Go to https://myaccount.google.com/security
-   - Click "2-Step Verification"
-   - Scroll to "App passwords"
-   - Create a new app password for "Mail"
-3. Add to `server/.env`:
+2. Generate an App Password at https://myaccount.google.com/apppasswords
+3. Update `server/.env`:
    ```env
    EMAIL_HOST=smtp.gmail.com
    EMAIL_PORT=587
-   EMAIL_USER=your-email@gmail.com
+   EMAIL_USER=your-gmail@gmail.com
    EMAIL_PASS=your-16-char-app-password
-   EMAIL_TO=institute-email@gmail.com
+   EMAIL_TO=info@shanrucktechnologies.in
    ```
 
 ### Other Email Providers
 
-See [CONTACT_FORM_SETUP.md](CONTACT_FORM_SETUP.md) for detailed configuration instructions for:
-- Outlook/Hotmail
-- Yahoo Mail
-- Custom SMTP servers
+See [CONTACT_FORM_SETUP.md](CONTACT_FORM_SETUP.md) for configuration details.
 
 ## 🛠️ Technology Stack
 

@@ -1,4 +1,4 @@
-// Quick test script to verify email configuration
+// Quick test script to verify GoDaddy email configuration
 // Run this with: node test-email.js
 
 import nodemailer from 'nodemailer';
@@ -6,34 +6,38 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-console.log('Testing email configuration...\n');
+console.log('Testing GoDaddy email configuration...\n');
 
 const transporter = nodemailer.createTransport({
   host: process.env.EMAIL_HOST,
   port: parseInt(process.env.EMAIL_PORT),
-  secure: false,
+  secure: true, // SSL for port 465
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  tls: {
+    rejectUnauthorized: false,
+  },
 });
 
-console.log('Configuration:');
+console.log('GoDaddy SMTP Configuration:');
 console.log(`Host: ${process.env.EMAIL_HOST}`);
 console.log(`Port: ${process.env.EMAIL_PORT}`);
 console.log(`User: ${process.env.EMAIL_USER}`);
-console.log(`Password: ${process.env.EMAIL_PASS ? 'kujfqixgkabcmatj' : 'NOT SET'}`);
+console.log(`Password: ${process.env.EMAIL_PASS ? '***SET***' : 'NOT SET'}`);
 console.log(`Send to: ${process.env.EMAIL_TO}\n`);
 
 transporter.verify((error, success) => {
   if (error) {
-    console.error('❌ Email configuration failed!');
+    console.error('❌ GoDaddy email configuration failed!');
     console.error('Error:', error.message);
     console.log('\nPlease check:');
-    console.log('1. EMAIL_USER is correct');
-    console.log('2. EMAIL_PASS is an App Password (for Gmail)');
-    console.log('3. 2-Factor Authentication is enabled');
-    console.log('4. SMTP settings are correct');
+    console.log('1. EMAIL_USER is your full GoDaddy email address');
+    console.log('2. EMAIL_PASS is your GoDaddy email password');
+    console.log('3. Your GoDaddy email account is properly configured');
+    console.log('4. SMTP settings are correct (smtpout.secureserver.net:465)');
+    console.log('5. Check if your GoDaddy account has SMTP restrictions');
   } else {
     console.log('✅ Email configuration is working!');
     console.log('\nSending test email...');

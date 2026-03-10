@@ -64,10 +64,10 @@ const Home = () => {
               <div className="orbit-icon icon-4" style={{ '--icon-bg': '#fce7f3', '--icon-color': '#db2777' }}>
                 <FaBriefcase />
               </div>
-              <div className="orbit-icon icon-5" style={{ '--icon-bg': '#fdf2f8', '--icon-color': '#be185d' }}>
+              <div className="orbit-icon icon-5" style={{ '--icon-bg': '#fdf2f8', '--icon-color': '#ffc0db' }}>
                 <FaCube />
               </div>
-              <div className="orbit-icon icon-6" style={{ '--icon-bg': '#fce7f3', '--icon-color': '#9d174d' }}>
+              <div className="orbit-icon icon-6" style={{ '--icon-bg': '#fce7f3', '--icon-color': '#ffb3d9' }}>
                 <FaRocket />
               </div>
             </div>

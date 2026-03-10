@@ -23,6 +23,14 @@ export default function SplashScreen({ onDone }) {
       <span className="splash-ring splash-ring--4" />
 
       <div className="splash-card">
+        {/* Floating particles */}
+        <div className="splash-particles">
+          <span className="particle particle--1"></span>
+          <span className="particle particle--2"></span>
+          <span className="particle particle--3"></span>
+          <span className="particle particle--4"></span>
+        </div>
+
         <div className="splash-logo-wrap">
           <img src={logo} alt="Shanruck Technologies" className="splash-logo" />
         </div>
