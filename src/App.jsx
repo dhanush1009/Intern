@@ -32,7 +32,7 @@ function App() {
             </Routes>
           </main>
           <Footer />
-          <Chatbot />
+          {splashDone && <Chatbot />}
         </div>
       </Router>
     </>
