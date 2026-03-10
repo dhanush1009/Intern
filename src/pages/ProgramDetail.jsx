@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   FaCode, 
@@ -11,13 +12,20 @@ import {
   FaArrowLeft,
   FaCheckCircle,
   FaBook,
-  FaLaptopCode
+  FaLaptopCode,
+  FaChevronDown,
+  FaChevronUp
 } from 'react-icons/fa';
 import './ProgramDetail.css';
 
 const ProgramDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [expandedModule, setExpandedModule] = useState(null);
+
+  const toggleModule = (moduleId) => {
+    setExpandedModule(expandedModule === moduleId ? null : moduleId);
+  };
 
   const programsData = {
     1: {
@@ -63,35 +71,107 @@ const ProgramDetail = () => {
     2: {
       icon: <FaPython />,
       title: 'Python Project-Based Learning',
-      description: 'Learn Python programming through real-world projects. Cover fundamentals, data structures, OOP, web scraping, automation, and build practical applications.',
-      duration: '4 Months',
-      level: 'Beginner Friendly',
+      description: 'We take a step-by-step approach, with each module building on the previous one. This allows students to progressively master Python, from basics to advanced topics, with hands-on projects to reinforce learning. Students will work on solving latest coding challenges and interview questions commonly asked by top MNCs.',
+      duration: '8-12 Weeks',
+      level: 'Beginner to Advanced',
       color: '#306998',
       modules: [
         {
           id: 1,
-          title: 'Module 1: Python Fundamentals',
-          topics: ['Python Syntax & Basics', 'Data Types & Variables', 'Control Flow', 'Functions', 'Modules & Packages']
+          title: 'Module 1: Python Basics',
+          topics: [
+            'Python Installation & Setup',
+            'Variables, Data Types, and Type Conversion',
+            'Operators (Arithmetic, Logical, Comparison)',
+            'Strings and String Methods',
+            'Lists, Tuples, Sets, and Dictionaries',
+            'Conditional Statements (if, elif, else)',
+            'Loops (for, while)',
+            'Functions & Scope'
+          ],
+          miniProjects: [
+            'Basic Calculator (Using input, operators, and functions)',
+            'To-Do List App (Using lists and loops)'
+          ]
         },
         {
           id: 2,
-          title: 'Module 2: Data Structures',
-          topics: ['Lists & Tuples', 'Dictionaries & Sets', 'String Methods', 'List Comprehensions', 'File Operations']
+          title: 'Module 2: Intermediate Python & OOP Concepts',
+          topics: [
+            'File Handling (open(), read(), write())',
+            'Exception Handling (try-except)',
+            'Object-Oriented Programming (OOP)',
+            'Classes and Objects',
+            'Inheritance & Polymorphism',
+            'Encapsulation',
+            'Working with Modules & Packages'
+          ],
+          miniProjects: [
+            'File Organizer (Sort files into folders based on extensions)',
+            'Student Grade Manager (Use OOP to manage students\' grades)'
+          ]
         },
         {
           id: 3,
-          title: 'Module 3: Object-Oriented Programming',
-          topics: ['Classes & Objects', 'Inheritance', 'Encapsulation', 'Polymorphism', 'Magic Methods']
+          title: 'Module 3: Data Handling & APIs',
+          topics: [
+            'Working with JSON & CSV',
+            'Introduction to APIs (requests module)',
+            'Web Scraping (BeautifulSoup, Scrapy)',
+            'Introduction to Databases (SQLite, MySQL)'
+          ],
+          miniProjects: [
+            'Weather App (Fetch data from an API)',
+            'News Scraper (Scrape headlines from a news website)'
+          ]
         },
         {
           id: 4,
-          title: 'Module 4: Web Scraping & Automation',
-          topics: ['Beautiful Soup', 'Selenium', 'Web Automation', 'Data Extraction', 'Automation Scripts']
+          title: 'Module 4: GUI Development & Automation',
+          topics: [
+            'Building GUI Applications (Tkinter or PyQt)',
+            'Automating Tasks with Python (os, shutil, subprocess)',
+            'Scheduling Tasks (schedule, cron)'
+          ],
+          miniProjects: [
+            'Basic Expense Tracker (GUI with Tkinter)',
+            'Automated Email Sender (Using smtplib)'
+          ]
         },
         {
           id: 5,
-          title: 'Module 5: Final Project',
-          topics: ['Project Development', 'Real-world Application', 'Code Optimization', 'Testing', 'Documentation']
+          title: 'Module 5: Advanced Python & AI/ML Introduction',
+          topics: [
+            'Multi-threading & Multiprocessing',
+            'Web Development with Flask/Django',
+            'Data Science Basics (pandas, matplotlib, numpy)',
+            'Introduction to Machine Learning (scikit-learn, tensorflow)'
+          ],
+          miniProjects: [
+            'Chatbot using Flask (Simple chatbot with an API)',
+            'Data Visualization Project (Analyze and visualize dataset)'
+          ]
+        },
+        {
+          id: 6,
+          title: 'Module 6: Final Project Development & Submission',
+          topics: [
+            'Student selects an idea and works on a full-fledged project',
+            'Core Python concepts integration',
+            'Database or API integration',
+            'GUI/Web component (optional)',
+            'Proper documentation'
+          ],
+          projectIdeas: [
+            'E-commerce Product Price Tracker (Web scraping + API)',
+            'Personal Finance Manager (Database + Tkinter GUI)',
+            'AI Chatbot for FAQs (NLP + Flask)',
+            'Portfolio Website using Flask/Django'
+          ],
+          submission: [
+            'Student submits the Python project',
+            'Presentation explaining: Problem statement, Implementation, Challenges faced, Future improvements'
+          ]
         }
       ]
     },
@@ -336,22 +416,82 @@ const ProgramDetail = () => {
           
           <div className="modules-list">
             {program.modules.map((module) => (
-              <div key={module.id} className="module-card">
-                <div className="module-header">
-                  <div className="module-number" style={{ background: program.color }}>
-                    {module.id}
+              <div key={module.id} className={`module-card ${expandedModule === module.id ? 'expanded' : ''}`}>
+                <div 
+                  className="module-header clickable" 
+                  onClick={() => toggleModule(module.id)}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                    <div className="module-number" style={{ background: program.color }}>
+                      {module.id}
+                    </div>
+                    <h3>{module.title}</h3>
                   </div>
-                  <h3>{module.title}</h3>
+                  <div className="expand-icon">
+                    {expandedModule === module.id ? <FaChevronUp /> : <FaChevronDown />}
+                  </div>
                 </div>
                 
-                <ul className="topics-list">
-                  {module.topics.map((topic, index) => (
-                    <li key={index}>
-                      <FaCheckCircle style={{ color: program.color }} />
-                      <span>{topic}</span>
-                    </li>
-                  ))}
-                </ul>
+                {expandedModule === module.id && (
+                  <div className="module-content">
+                    {module.topics && (
+                      <div className="module-section">
+                        <h4>Topics Covered:</h4>
+                        <ul className="topics-list">
+                          {module.topics.map((topic, index) => (
+                            <li key={index}>
+                              <FaCheckCircle style={{ color: program.color }} />
+                              <span>{topic}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    
+                    {module.miniProjects && (
+                      <div className="module-section">
+                        <h4>Mini-Projects:</h4>
+                        <ul className="projects-list">
+                          {module.miniProjects.map((project, index) => (
+                            <li key={index}>
+                              <FaLaptopCode style={{ color: program.color }} />
+                              <span>{project}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    
+                    {module.projectIdeas && (
+                      <div className="module-section">
+                        <h4>Final Project Ideas:</h4>
+                        <ul className="projects-list">
+                          {module.projectIdeas.map((idea, index) => (
+                            <li key={index}>
+                              <FaLaptopCode style={{ color: program.color }} />
+                              <span>{idea}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    
+                    {module.submission && (
+                      <div className="module-section">
+                        <h4>Final Submission:</h4>
+                        <ul className="topics-list">
+                          {module.submission.map((item, index) => (
+                            <li key={index}>
+                              <FaCheckCircle style={{ color: program.color }} />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>
