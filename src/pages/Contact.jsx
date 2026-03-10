@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 
 const COUNTRY_CODES = [
   { code: '+91', country: 'India', flag: '🇮🇳' },
@@ -73,26 +73,7 @@ const Contact = () => {
   const [errors, setErrors] = useState([]);
   const [touched, setTouched] = useState({});
   const [fieldErrors, setFieldErrors] = useState({ email: '', phone: '' });
-  const [countryCode, setCountryCode] = useState(COUNTRY_CODES[0]);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [countrySearch, setCountrySearch] = useState('');
-  const dropdownRef = useRef(null);
-
-  const filteredCountries = COUNTRY_CODES.filter(c =>
-    c.country.toLowerCase().includes(countrySearch.toLowerCase()) ||
-    c.code.includes(countrySearch)
-  );
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setDropdownOpen(false);
-        setCountrySearch('');
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  const [countryCode, setCountryCode] = useState('+91');
 
   // Validation functions
   const validateEmail = (email) => {
@@ -178,7 +159,7 @@ const Contact = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData, phone: `${countryCode.code}${formData.phone}` }),
+        body: JSON.stringify({ ...formData, phone: `${countryCode}${formData.phone}` }),
       });
 
       const data = await response.json();
@@ -297,41 +278,18 @@ const Contact = () => {
               <div className="form-group">
                 <label htmlFor="phone">Phone Number *</label>
                 <div className={`phone-input-wrapper ${touched.phone && fieldErrors.phone ? 'input-error' : touched.phone && !fieldErrors.phone && formData.phone ? 'input-success' : ''}`}>
-                  <div className="country-code-selector" ref={dropdownRef}>
-                    <button
-                      type="button"
-                      className="country-code-btn"
-                      onClick={() => { setDropdownOpen(o => !o); setCountrySearch(''); }}
-                      disabled={loading}
-                    >
-                      <span>{countryCode.flag} {countryCode.code}</span>
-                      <span className="cc-arrow">{dropdownOpen ? '▲' : '▼'}</span>
-                    </button>
-                    {dropdownOpen && (
-                      <div className="country-dropdown">
-                        <input
-                          type="text"
-                          className="country-search"
-                          placeholder="Search country..."
-                          value={countrySearch}
-                          onChange={e => setCountrySearch(e.target.value)}
-                          autoFocus
-                        />
-                        <ul>
-                          {filteredCountries.map((c, i) => (
-                            <li
-                              key={i}
-                              className={countryCode.country === c.country && countryCode.code === c.code ? 'active' : ''}
-                              onClick={() => { setCountryCode(c); setDropdownOpen(false); setCountrySearch(''); }}
-                            >
-                              {c.flag} {c.country} <span>{c.code}</span>
-                            </li>
-                          ))}
-                          {filteredCountries.length === 0 && <li className="no-result">No results</li>}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
+                  <select
+                    className="country-code-select"
+                    value={countryCode}
+                    onChange={e => setCountryCode(e.target.value)}
+                    disabled={loading}
+                  >
+                    {COUNTRY_CODES.map((c, i) => (
+                      <option key={i} value={c.code}>
+                        {c.flag} {c.country} ({c.code})
+                      </option>
+                    ))}
+                  </select>
                   <input
                     type="tel"
                     id="phone"
