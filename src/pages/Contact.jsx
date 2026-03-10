@@ -1,4 +1,50 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+
+const COUNTRY_CODES = [
+  { code: '+91', country: 'India', flag: '🇮🇳' },
+  { code: '+1', country: 'United States', flag: '🇺🇸' },
+  { code: '+1', country: 'Canada', flag: '🇨🇦' },
+  { code: '+44', country: 'United Kingdom', flag: '🇬🇧' },
+  { code: '+61', country: 'Australia', flag: '🇦🇺' },
+  { code: '+64', country: 'New Zealand', flag: '🇳🇿' },
+  { code: '+971', country: 'UAE', flag: '🇦🇪' },
+  { code: '+966', country: 'Saudi Arabia', flag: '🇸🇦' },
+  { code: '+974', country: 'Qatar', flag: '🇶🇦' },
+  { code: '+965', country: 'Kuwait', flag: '🇰🇼' },
+  { code: '+968', country: 'Oman', flag: '🇴🇲' },
+  { code: '+973', country: 'Bahrain', flag: '🇧🇭' },
+  { code: '+65', country: 'Singapore', flag: '🇸🇬' },
+  { code: '+60', country: 'Malaysia', flag: '🇲🇾' },
+  { code: '+94', country: 'Sri Lanka', flag: '🇱🇰' },
+  { code: '+880', country: 'Bangladesh', flag: '🇧🇩' },
+  { code: '+92', country: 'Pakistan', flag: '🇵🇰' },
+  { code: '+977', country: 'Nepal', flag: '🇳🇵' },
+  { code: '+95', country: 'Myanmar', flag: '🇲🇲' },
+  { code: '+66', country: 'Thailand', flag: '🇹🇭' },
+  { code: '+63', country: 'Philippines', flag: '🇵🇭' },
+  { code: '+62', country: 'Indonesia', flag: '🇮🇩' },
+  { code: '+84', country: 'Vietnam', flag: '🇻🇳' },
+  { code: '+82', country: 'South Korea', flag: '🇰🇷' },
+  { code: '+81', country: 'Japan', flag: '🇯🇵' },
+  { code: '+86', country: 'China', flag: '🇨🇳' },
+  { code: '+852', country: 'Hong Kong', flag: '🇭🇰' },
+  { code: '+49', country: 'Germany', flag: '🇩🇪' },
+  { code: '+33', country: 'France', flag: '🇫🇷' },
+  { code: '+39', country: 'Italy', flag: '🇮🇹' },
+  { code: '+34', country: 'Spain', flag: '🇪🇸' },
+  { code: '+31', country: 'Netherlands', flag: '🇳🇱' },
+  { code: '+41', country: 'Switzerland', flag: '🇨🇭' },
+  { code: '+46', country: 'Sweden', flag: '🇸🇪' },
+  { code: '+47', country: 'Norway', flag: '🇳🇴' },
+  { code: '+45', country: 'Denmark', flag: '🇩🇰' },
+  { code: '+358', country: 'Finland', flag: '🇫🇮' },
+  { code: '+7', country: 'Russia', flag: '🇷🇺' },
+  { code: '+55', country: 'Brazil', flag: '🇧🇷' },
+  { code: '+27', country: 'South Africa', flag: '🇿🇦' },
+  { code: '+234', country: 'Nigeria', flag: '🇳🇬' },
+  { code: '+254', country: 'Kenya', flag: '🇰🇪' },
+  { code: '+20', country: 'Egypt', flag: '🇪🇬' },
+];
 import { 
   FaMapMarkerAlt, 
   FaPhone, 
@@ -6,7 +52,6 @@ import {
   FaPaperPlane,
   FaClock,
   FaFacebookF,
-  FaTwitter,
   FaLinkedinIn,
   FaInstagram,
   FaCheckCircle,
@@ -27,64 +72,88 @@ const Contact = () => {
   const [success, setSuccess] = useState(false);
   const [errors, setErrors] = useState([]);
   const [touched, setTouched] = useState({});
+  const [fieldErrors, setFieldErrors] = useState({ email: '', phone: '' });
+  const [countryCode, setCountryCode] = useState(COUNTRY_CODES[0]);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [countrySearch, setCountrySearch] = useState('');
+  const dropdownRef = useRef(null);
+
+  const filteredCountries = COUNTRY_CODES.filter(c =>
+    c.country.toLowerCase().includes(countrySearch.toLowerCase()) ||
+    c.code.includes(countrySearch)
+  );
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+        setCountrySearch('');
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   // Validation functions
   const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email.trim());
   };
 
-  const validatePhone = (phone) => {
-    const phoneRegex = /^[+]?[\d\s\-()]{10,}$/;
-    return phoneRegex.test(phone);
+  const getEmailError = (value) => {
+    if (!value.trim()) return 'Email is required';
+    if (!validateEmail(value)) return 'Enter a valid email (e.g. name@example.com)';
+    return '';
+  };
+
+  const getPhoneError = (value) => {
+    if (!value.trim()) return 'Phone number is required';
+    if (!/^[\d\s\-()]+$/.test(value)) return 'Phone number can only contain digits, -, spaces';
+    const digits = value.replace(/[^\d]/g, '');
+    if (digits.length < 6 || digits.length > 15) return 'Enter a valid phone number (6–15 digits)';
+    return '';
   };
 
   const validateForm = () => {
     const newErrors = [];
 
-    if (!formData.name.trim()) {
-      newErrors.push('Name is required');
-    }
+    if (!formData.name.trim()) newErrors.push('Name is required');
 
-    if (!formData.email.trim()) {
-      newErrors.push('Email is required');
-    } else if (!validateEmail(formData.email)) {
-      newErrors.push('Please enter a valid email address');
-    }
+    const emailErr = getEmailError(formData.email);
+    if (emailErr) newErrors.push(emailErr);
 
-    if (!formData.phone.trim()) {
-      newErrors.push('Phone number is required');
-    } else if (!validatePhone(formData.phone)) {
-      newErrors.push('Please enter a valid phone number (minimum 10 digits)');
-    }
+    const phoneErr = getPhoneError(formData.phone);
+    if (phoneErr) newErrors.push(phoneErr);
 
-    if (!formData.course) {
-      newErrors.push('Please select a course');
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.push('Message is required');
-    }
+    if (!formData.course) newErrors.push('Please select a course');
+    if (!formData.message.trim()) newErrors.push('Message is required');
 
     return newErrors;
   };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-    // Clear errors when user starts typing
-    if (errors.length > 0) {
-      setErrors([]);
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+
+    // Live inline validation for email and phone
+    if (name === 'email') {
+      setFieldErrors(prev => ({ ...prev, email: value ? getEmailError(value) : '' }));
     }
+    if (name === 'phone') {
+      setFieldErrors(prev => ({ ...prev, phone: value ? getPhoneError(value) : '' }));
+    }
+
+    if (errors.length > 0) setErrors([]);
   };
 
   const handleBlur = (field) => {
-    setTouched({
-      ...touched,
-      [field]: true
-    });
+    setTouched({ ...touched, [field]: true });
+    if (field === 'email') {
+      setFieldErrors(prev => ({ ...prev, email: getEmailError(formData.email) }));
+    }
+    if (field === 'phone') {
+      setFieldErrors(prev => ({ ...prev, phone: getPhoneError(formData.phone) }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -109,7 +178,7 @@ const Contact = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, phone: `${countryCode.code}${formData.phone}` }),
       });
 
       const data = await response.json();
@@ -213,23 +282,74 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   onBlur={() => handleBlur('email')}
-                  placeholder="Enter your email"
+                  placeholder="Enter your email (e.g. name@example.com)"
                   disabled={loading}
+                  className={touched.email && fieldErrors.email ? 'input-error' : touched.email && !fieldErrors.email && formData.email ? 'input-success' : ''}
                 />
+                {touched.email && fieldErrors.email && (
+                  <span className="field-error-msg">&#9888; {fieldErrors.email}</span>
+                )}
+                {touched.email && !fieldErrors.email && formData.email && (
+                  <span className="field-success-msg">&#10003; Valid email</span>
+                )}
               </div>
 
               <div className="form-group">
                 <label htmlFor="phone">Phone Number *</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  onBlur={() => handleBlur('phone')}
-                  placeholder="Enter your phone number"
-                  disabled={loading}
-                />
+                <div className={`phone-input-wrapper ${touched.phone && fieldErrors.phone ? 'input-error' : touched.phone && !fieldErrors.phone && formData.phone ? 'input-success' : ''}`}>
+                  <div className="country-code-selector" ref={dropdownRef}>
+                    <button
+                      type="button"
+                      className="country-code-btn"
+                      onClick={() => { setDropdownOpen(o => !o); setCountrySearch(''); }}
+                      disabled={loading}
+                    >
+                      <span>{countryCode.flag} {countryCode.code}</span>
+                      <span className="cc-arrow">{dropdownOpen ? '▲' : '▼'}</span>
+                    </button>
+                    {dropdownOpen && (
+                      <div className="country-dropdown">
+                        <input
+                          type="text"
+                          className="country-search"
+                          placeholder="Search country..."
+                          value={countrySearch}
+                          onChange={e => setCountrySearch(e.target.value)}
+                          autoFocus
+                        />
+                        <ul>
+                          {filteredCountries.map((c, i) => (
+                            <li
+                              key={i}
+                              className={countryCode.country === c.country && countryCode.code === c.code ? 'active' : ''}
+                              onClick={() => { setCountryCode(c); setDropdownOpen(false); setCountrySearch(''); }}
+                            >
+                              {c.flag} {c.country} <span>{c.code}</span>
+                            </li>
+                          ))}
+                          {filteredCountries.length === 0 && <li className="no-result">No results</li>}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    onBlur={() => handleBlur('phone')}
+                    placeholder="Enter phone number"
+                    disabled={loading}
+                    maxLength={15}
+                  />
+                </div>
+                {touched.phone && fieldErrors.phone && (
+                  <span className="field-error-msg">&#9888; {fieldErrors.phone}</span>
+                )}
+                {touched.phone && !fieldErrors.phone && formData.phone && (
+                  <span className="field-success-msg">&#10003; Valid phone number</span>
+                )}
               </div>
 
               <div className="form-group">
@@ -335,9 +455,6 @@ const Contact = () => {
               <div className="social-icons">
                 <a href="#" className="social-icon" aria-label="Facebook">
                   <FaFacebookF />
-                </a>
-                <a href="#" className="social-icon" aria-label="Twitter">
-                  <FaTwitter />
                 </a>
                 <a href="#" className="social-icon" aria-label="LinkedIn">
                   <FaLinkedinIn />

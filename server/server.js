@@ -106,7 +106,7 @@ This enquiry was submitted on ${new Date().toLocaleString()}
     // Email options
     const mailOptions = {
       from: `"Shanruck Website" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_TO || 'info@shanrucktech.com',
+      to: process.env.EMAIL_TO || 'info@shanrucktechnologies.in',
       subject: 'New Enquiry from Website',
       text: emailContent,
       html: `
@@ -199,7 +199,7 @@ This query was submitted via chatbot on ${new Date().toLocaleString()}
     // Email options
     const mailOptions = {
       from: `"Shanruck Chatbot" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_TO || 'info@shanrucktech.com',
+      to: process.env.EMAIL_TO || 'info@shanrucktechnologies.in',
       subject: 'New Query from Chatbot',
       text: emailContent,
       html: `

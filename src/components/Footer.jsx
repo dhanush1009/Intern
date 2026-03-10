@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { 
   FaFacebookF, 
-  FaTwitter, 
   FaLinkedinIn, 
   FaInstagram, 
   FaPhone, 
@@ -24,9 +23,6 @@ const Footer = () => {
             <a href="#" className="social-icon" aria-label="Facebook">
               <FaFacebookF />
             </a>
-            {/* <a href="#" className="social-icon" aria-label="Twitter">
-              <FaTwitter />
-            </a> */}
             <a href="https://www.linkedin.com/company/shanruck-technologies/" className="social-icon" aria-label="LinkedIn">
               <FaLinkedinIn />
             </a>
